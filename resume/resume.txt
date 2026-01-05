@@ -1,0 +1,141 @@
+Yohannes Reta/
+1. ├── Professional Resume for Dire Dawa University ──|
+    PROFESSIONAL SUMMARY
+    Dedicated Computer Engineering Professional and Educator with 5+ years of experience in technical support, lab development, and academic instruction. Proven expertise in Java programming, database systems, and IT infrastructure management. Adept at leading cross-functional teams, designing lab manuals, and implementing innovative solutions such as the university’s first online exit exam system. Committed to fostering student success through hands-on training and collaborative problem-solving.
+
+    PROFESSIONAL EXPERIENCE
+    Dire Dawa University
+    Dire Dawa, Ethiopia
+    Senior Technical Officer & Lab Coordinator (December 2021 – Present)
+    Technical Support Specialist (July 2018 – December 2021)
+
+    Technical Leadership: Spearheaded the establishment and organization of 10+ departmental computer laboratories, enhancing resources for 500+ students annually.
+
+    IT Infrastructure Development: Built and maintained new labs for computer engineering students, streamlining access to critical tools for courses in Java, DBMS, and operating systems.
+
+    Innovative Exam Systems: Led the university’s first task force to design and implement online exit exam preparation platforms, improving efficiency and scalability for 200+ graduating students.
+
+    Collaborative Support: Partnered with ICT teams to troubleshoot hardware/software issues, ensuring 95% lab uptime. Trained faculty and students on system usage and best practices.
+
+    Process Improvement: Authored comprehensive lab manuals for Java (OOP I/II, Advanced), DBMS (SQL), and OS courses, reducing setup time by 30% for instructors.
+
+    TEACHING EXPERIENCE
+    Computer Engineering Instructor
+    Dire Dawa University (July 2018 – Present)
+
+    Course Delivery: Taught 500+ students in lab sessions for Java programming (OOP I/II, Advanced Java), DBMS (SQL), and operating systems.
+
+    Curriculum Development: Created structured lab manuals and practical exercises to align with theoretical coursework, improving student engagement by 40%.
+
+    Student Mentorship: Trained and coached 100+ students for exit exams, achieving a 98% pass rate in technical subjects.
+
+    TECHNICAL SKILLS
+    Programming: Java (OOP, Advanced), SQL, Python
+
+    Systems: Database Management (DBMS), Operating Systems (Windows/Linux)
+
+    Tools: Lab setup/maintenance, ICT troubleshooting, LMS platforms
+
+    Soft Skills: Team leadership, technical training, cross-departmental collaboration
+
+
+
+2. ├── Professional Resume for Dire Dawa University ──|
+
+    Professional Summary
+    Results-driven ICT Technical Analyst with 9+ months of hands-on experience in IT solutions, infrastructure management, and technical support. Proven expertise in server administration (ESXi), endpoint management, network troubleshooting, and data center operations. Adept at providing high-level IT support, system maintenance, and problem resolution while ensuring seamless business operations. Strong ability to manage POS systems, printer servers, and enterprise software with administrative privileges.
+
+    Key Skills & Competencies
+    ✔ Server & Virtualization: VMware ESXi, Data Center Management
+    ✔ Endpoint & User Support: Endpoint Central, Zoho Service Desk, Troubleshooting (Hardware/Software)
+    ✔ Network Management: LAN/WAN Troubleshooting, Network Installation & Configuration
+    ✔ System Administration: POS Server, Printer Manager Server, EPC Server
+    ✔ IT Helpdesk & Ticketing: Zoho Service Desk, User Training & Support
+    ✔ Workshop IT Systems: CICO (Clock-In Clock-Out) Maintenance
+    ✔ Security & Access Control: Admin Privileges Management, System Audits
+
+    Professional Experience
+    ICT Technical Analyst
+    Moti Engineering (Outsourced to Moenco Inchcape Company) | [Month/Year] – Present
+
+    Manage and maintain VMware ESXi servers, ensuring optimal performance and security.
+
+    Provide Level 2/3 IT support via Zoho Service Desk, resolving hardware, software, and network issues.
+
+    Administer Endpoint Central for centralized device management and software deployment.
+
+    Oversee POS server operations, ensuring seamless transaction processing and system reliability.
+
+    Troubleshoot and maintain CICO (Clock-In Clock-Out) systems for workshop employees.
+
+    Install, configure, and troubleshoot network infrastructure (switches, routers, firewalls).
+
+    Manage printer server operations, ensuring smooth document workflow across departments.
+
+    Collaborate with head office IT teams to implement system upgrades and security patches.
+
+    Conduct user training sessions for new software/tools, improving digital literacy.
+
+    Maintain data center operations, including backups, disaster recovery, and system monitoring.
+
+
+
+
+
+3. ├── personal Skill Experiance  ──|
+
+Music Producer | Composer | Audio Engineer | Video & Photo Editor
+📍 [Your Location] | ✉ [Your Email] | ☎ [Your Phone] | 🌐 [Your Portfolio/Website]
+
+Professional Summary
+Creative and skilled Music Producer with expertise in songwriting, melody composition, mixing, arrangement, and mastering using FL Studio. Experienced in producing high-quality tracks, remixing classics, and collaborating with artists. Additionally, proficient in video editing and photo editing (Adobe Photoshop, etc.), with a strong eye for detail and artistic rendering.
+
+Key Skills
+✔ Music Production (FL Studio, Plugins, VSTs)
+✔ Songwriting (Lyrics & Melody Composition)
+✔ Audio Mixing, Arrangement & Mastering
+✔ Remixing & Sound Design
+✔ Video Editing (Professional-grade software)
+✔ Photo Editing & Graphic Design (Photoshop, Rendering Tools)
+
+Professional Experience
+Music Producer & Audio Engineer
+Freelance | [Year] – Present
+Composed, produced, and mastered original music tracks, including an EP Album titled "Ende Yhuda".
+
+Created and mastered two musical melodies for the poetry album "Notordam Fitlefit" by artist Zerihun Birhanu.
+
+Developed 20+ unreleased tracks, with 2 official releases and 8 tracks finalized for production.
+
+Specialized in remixing old classics with modern production techniques.
+
+Utilized FL Studio, plugins, and advanced mixing/mastering tools for professional-grade sound.
+
+Video & Photo Editor
+Freelance | [Year] – Present
+Edited high-quality videos with seamless transitions, effects, and color grading.
+
+Enhanced images using Adobe Photoshop and rendering software for professional visuals.
+
+Collaborated with artists to create visually appealing content for music and promotional materials.
+
+Projects & Releases
+🎵 EP Album: "Ende Yhuda" (Produced, Mixed, Mastered)
+🎶 Featured Work: Musical melodies for "Notordam Fitlefit" (Poetry Album)
+🎼 Unreleased Portfolio: 20+ tracks (Including 8 production-ready songs)
+🎬 Video/Photo Editing: [Mention notable projects if applicable]
+
+Software & Tools
+Music Production: FL Studio, VST Plugins, Mixing & Mastering Tools
+
+Video Editing: [List software, e.g., Adobe Premiere Pro, DaVinci Resolve]
+
+Photo Editing: Adobe Photoshop, [Other Rendering Tools]
+
+Education & Training
+[If applicable, list any relevant education, courses, or certifications in music production, audio engineering, or multimedia.]
+
+Connect With Me
+🔗 [Website/Portfolio Link] | 🎵 [SoundCloud/Bandcamp] | ▶ [YouTube] | 📸 [Instagram/Behance]
+
+

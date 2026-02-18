@@ -203,6 +203,89 @@
       background: linear-gradient(135deg, var(--gray-100), var(--gray-200));
     }
 
+    /* ===== DROPDOWN STYLES ===== */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dropdown-toggle i {
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown.active .dropdown-toggle i {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 0;
+      min-width: 220px;
+      background: var(--light);
+      border-radius: var(--border-radius-sm);
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: var(--transition);
+      z-index: 100;
+      border: 1px solid var(--gray-200);
+      overflow: hidden;
+    }
+
+    .dropdown.active .dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.25rem;
+      color: var(--gray-700);
+      transition: var(--transition);
+      border-bottom: 1px solid var(--gray-200);
+      font-weight: 500;
+    }
+
+    .dropdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .dropdown-item:hover {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: white;
+      padding-left: 1.75rem;
+    }
+
+    .dropdown-item i {
+      font-size: 1.1rem;
+    }
+
+    /* For mobile, ensure dropdown covers full width if needed */
+    @media (max-width: 768px) {
+      .dropdown-menu {
+        left: 0;
+        right: auto;
+        min-width: 200px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dropdown-menu {
+        width: 100%;
+      }
+    }
+
     /* ===== SIDEBAR REDESIGN - NO SCROLL, COMPACT ===== */
     .sidebar {
       position: fixed;
@@ -539,6 +622,7 @@
       gap: 1rem;
       margin-bottom: 2.5rem;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     /* Modern Profile Image Styling */
@@ -1915,6 +1999,32 @@
             <span>View Projects</span>
             <i class="bx bx-code"></i>
           </a>
+          
+          <!-- NEW: Dropdown for Websites for Sale -->
+          <div class="dropdown" id="websitesDropdown">
+            <button class="btn btn-outline dropdown-toggle" id="dropdownToggle">
+              <span>Websites for Sale</span>
+              <i class="bx bx-chevron-down"></i>
+            </button>
+            <div class="dropdown-menu">
+              <a href="#" class="dropdown-item" target="_blank">
+                <i class="bx bx-code-alt"></i>
+                <span>Creative Hub</span>
+              </a>
+              <a href="#" class="dropdown-item" target="_blank">
+                <i class="bx bx-book"></i>
+                <span>Library Management</span>
+              </a>
+              <a href="#" class="dropdown-item" target="_blank">
+                <i class="bx bx-store"></i>
+                <span>Kebele Store</span>
+              </a>
+              <a href="#" class="dropdown-item" target="_blank">
+                <i class="bx bx-support"></i>
+                <span>Ticket System</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
       
@@ -2119,7 +2229,7 @@
             </div>
           </div>
 
-                    <!-- Data Encoder -->
+          <!-- Data Encoder -->
           <div class="timeline-item">
             <div class="timeline-marker">
               <i class="bx bx-data"></i>
@@ -2157,11 +2267,10 @@
         </div>
         
         <div class="projects-grid">
-
           <!-- ATM Reporting -->
           <div class="project-card glass" data-aos="fade-up" data-aos-delay="250">
             <div class="project-image">
-              <img src="assets/images/TMS.png" alt="Ticket Management  System" loading="lazy">
+              <img src="assets/images/TMS.png" alt="Ticket Management System" loading="lazy">
               <div class="project-overlay">
                 <div class="project-tags">
                   <span class="project-tag">Servicedesk</span>
@@ -2187,7 +2296,6 @@
               </a>
             </div>
           </div>
-
 
           <!-- ATM Reporting -->
           <div class="project-card glass" data-aos="fade-up" data-aos-delay="250">
@@ -2304,13 +2412,10 @@
               </a>
             </div>
           </div>
-      
-
         </div>
       </div>
     </section>
 
-    
     <!-- SKILLS SECTION -->
     <section id="skills" class="section dark-section">
       <div class="container">
@@ -2460,8 +2565,7 @@
         </div>
         
         <div class="certificates-grid">
-
-           <div class="certificate-card glass" data-aos="zoom-in" data-aos-delay="100">
+          <div class="certificate-card glass" data-aos="zoom-in" data-aos-delay="100">
             <div class="certificate-image">
               <img src="assets/images/certificates/HIK_Vision.jpg" alt="HIK-VISION Certification" loading="lazy">
               <div class="certificate-overlay">
@@ -2481,7 +2585,7 @@
             </div>
           </div>
                
-           <div class="certificate-card glass" data-aos="zoom-in" data-aos-delay="100">
+          <div class="certificate-card glass" data-aos="zoom-in" data-aos-delay="100">
             <div class="certificate-image">
               <img src="assets/images/certificates/CCNA1.png" alt="CCNA Certification" loading="lazy">
               <div class="certificate-overlay">
@@ -2830,6 +2934,7 @@
       initScrollAnimations();
       initSkillBars();
       initTooltips();
+      initDropdown(); // NEW: initialize dropdown
       
       // Initialize AOS
       AOS.init({
@@ -2855,6 +2960,42 @@
         });
       });
     });
+
+    // ===== DROPDOWN TOGGLE =====
+    function initDropdown() {
+      const dropdown = document.getElementById('websitesDropdown');
+      const toggle = document.getElementById('dropdownToggle');
+
+      if (!dropdown || !toggle) return;
+
+      // Toggle on button click
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        dropdown.classList.toggle('active');
+      });
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!dropdown.contains(e.target)) {
+          dropdown.classList.remove('active');
+        }
+      });
+
+      // Prevent closing when clicking inside dropdown menu
+      const menu = dropdown.querySelector('.dropdown-menu');
+      menu.addEventListener('click', (e) => {
+        e.stopPropagation(); // keep dropdown open if needed, but we want to close after item click?
+        // Actually we want to close after selecting an item for better UX
+      });
+
+      // Close dropdown after item click (optional)
+      menu.querySelectorAll('.dropdown-item').forEach(item => {
+        item.addEventListener('click', () => {
+          dropdown.classList.remove('active');
+        });
+      });
+    }
 
     // ===== THEME MANAGEMENT =====
     function initThemeToggle() {

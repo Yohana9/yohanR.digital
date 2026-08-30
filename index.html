@@ -382,24 +382,21 @@ main{display:block;}
 }
 
 /* ============================================================
-   ABOUT — bento grid
+   ABOUT — three equal cards in one row on medium+ screens
    ============================================================ */
-.about-grid{display:grid;grid-template-columns:1.3fr 1fr;grid-template-rows:auto auto;gap:1.75rem;}
-.about-card:nth-child(1){grid-row:1/3;}
-.about-card:nth-child(2){grid-column:2;grid-row:1;}
-.about-card:nth-child(3){grid-column:2;grid-row:2;}
+.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;align-items:stretch;}
 @media (max-width:900px){
   .about-grid{grid-template-columns:1fr;}
-  .about-card:nth-child(1),.about-card:nth-child(2),.about-card:nth-child(3){grid-column:1;grid-row:auto;}
 }
 .accent-top{position:relative;}
 .accent-top::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radius) var(--radius) 0 0;background:linear-gradient(90deg,var(--primary),var(--secondary),var(--accent));opacity:.85;}
 
 .about-card{padding:2.25rem;height:100%;display:flex;flex-direction:column;}
 .about-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);}
-.about-icon{width:58px;height:58px;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;margin-bottom:1.3rem;color:#fff;font-size:1.5rem;transition:var(--transition);}
+.about-card-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.3rem;}
+.about-icon{width:58px;height:58px;flex-shrink:0;border-radius:16px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;transition:var(--transition);}
 .about-card:hover .about-icon{transform:scale(1.08) rotate(-4deg);}
-.about-card h3{font-family:var(--font-display);font-size:1.4rem;font-weight:600;margin-bottom:1rem;}
+.about-card h3{font-family:var(--font-display);font-size:1.4rem;font-weight:600;}
 .about-card p{color:var(--text-secondary);margin-bottom:1.25rem;line-height:1.75;}
 .about-highlights{display:flex;flex-direction:column;gap:.75rem;margin-top:auto;}
 .highlight-item{display:flex;align-items:center;gap:.75rem;}
@@ -559,6 +556,8 @@ main{display:block;}
 .form-group input.error,.form-group textarea.error{border-color:var(--error);}
 .form-error{color:var(--error);font-size:.8rem;margin-top:.3rem;min-height:1.2rem;}
 .form-footer{display:flex;flex-wrap:wrap;gap:1rem;align-items:center;margin-top:.5rem;}
+.form-fallback-link{font-size:.85rem;color:var(--text-muted);text-decoration:underline;text-underline-offset:2px;transition:var(--transition);}
+.form-fallback-link:hover{color:var(--secondary);}
 .btn.is-loading{pointer-events:none;opacity:.75;}
 .btn.is-loading i{animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
@@ -760,8 +759,7 @@ main{display:block;}
 
         <div class="about-grid">
           <div class="about-card glass accent-top" data-aos="fade-right">
-            <div class="about-icon"><i class="bx bx-user-circle"></i></div>
-            <h3>About Me</h3>
+            <div class="about-card-header"><div class="about-icon"><i class="bx bx-user-circle"></i></div><h3>About Me</h3></div>
             <p>Senior Project Management Officer with a strong technical foundation in ICT infrastructure and systems operations. Proven expertise in managing complex projects, technical teams, and enterprise-level initiatives with a results-driven approach.</p>
             <div class="about-highlights">
               <div class="highlight-item"><i class="bx bx-check-circle"></i><span>6+ years ICT experience</span></div>
@@ -771,8 +769,7 @@ main{display:block;}
           </div>
 
           <div class="about-card glass accent-top" data-aos="fade-up">
-            <div class="about-icon"><i class="bx bx-bullseye"></i></div>
-            <h3>Career Focus</h3>
+            <div class="about-card-header"><div class="about-icon"><i class="bx bx-bullseye"></i></div><h3>Career Focus</h3></div>
             <p>Delivering seamless business continuity through robust IT systems management, technical issue resolution, and comprehensive user training programs.</p>
             <div class="focus-areas">
               <span class="focus-tag">IT Infrastructure</span>
@@ -784,8 +781,7 @@ main{display:block;}
           </div>
 
           <div class="about-card glass accent-top" data-aos="fade-left">
-            <div class="about-icon"><i class="bx bx-chart"></i></div>
-            <h3>Key Achievements</h3>
+            <div class="about-card-header"><div class="about-icon"><i class="bx bx-chart"></i></div><h3>Key Achievements</h3></div>
             <ul class="achievement-list">
               <li><i class="bx bx-trending-up"></i><span>Reduced system downtimes by 25% through VMware ESXi optimization</span></li>
               <li><i class="bx bx-trending-up"></i><span>Achieved 90% SLA compliance in IT support resolution</span></li>
@@ -1114,6 +1110,7 @@ main{display:block;}
 
               <div class="form-footer">
                 <button type="submit" class="btn btn-primary" id="formSubmitBtn"><span>Send Message</span> <i class="bx bx-send"></i></button>
+                <a href="mailto:yohanreta9@gmail.com" class="form-fallback-link">or email me directly</a>
                 <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
               </div>
             </form>
@@ -1368,11 +1365,60 @@ main{display:block;}
         setInterval(advanceSlide, 5000);
       }
 
-      /* ---------- Contact form — FormSubmit relay (no API keys needed) ---------- */
-      const FORM_ENDPOINT = 'https://formsubmit.co/ajax/yohanreta9@gmail.com';
+      /* ---------- Contact form — dual-mode with automatic fallback ----------
+         1st attempt: your own PHP + MySQL backend on portfolio.yeneflow.com
+                      (full control, every message saved to a real database)
+         2nd attempt: FormSubmit relay — needs no hosting at all, so it keeps
+                      working even if the subdomain/hosting is down or the
+                      DNS/subscription lapses
+         Final fallback: a visible "email me directly" mailto link, always
+                      present regardless of either backend's health.
+      */
+      const CONTACT_ENDPOINTS = [
+        {
+          // Update this path if you move submit-contact.php to a subfolder
+          // on portfolio.yeneflow.com (e.g. .../api/submit-contact.php).
+          url: 'https://portfolio.yeneflow.com/submit-contact.php',
+          type: 'own'
+        },
+        {
+          // Keyless, hosting-free relay — the safety net if the subdomain
+          // above is ever unreachable. First-ever use to this address needs
+          // a one-time confirmation click from an email FormSubmit sends.
+          url: 'https://formsubmit.co/ajax/yohanreta9@gmail.com',
+          type: 'formsubmit'
+        }
+      ];
+
       const form = document.getElementById('contactForm');
       const statusDiv = document.getElementById('formStatus');
       const submitBtn = document.getElementById('formSubmitBtn');
+
+      function setFieldError(field, message) {
+        const input = form.querySelector(`[name="${field}"]`);
+        if (!input) return;
+        const errorDiv = input.parentElement.querySelector('.form-error');
+        if (message) {
+          input.classList.add('error');
+          if (errorDiv) errorDiv.textContent = message;
+        } else {
+          input.classList.remove('error');
+          if (errorDiv) errorDiv.textContent = '';
+        }
+      }
+
+      async function tryEndpoint(endpoint, formData) {
+        const response = await fetch(endpoint.url, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: formData
+        });
+        let payload = null;
+        try { payload = await response.json(); } catch (_) { /* non-JSON response */ }
+        const succeeded = response.ok && payload &&
+          (payload.success === true || payload.success === 'true');
+        return { response, payload, succeeded };
+      }
 
       if (form) {
         form.addEventListener('submit', async (e) => {
@@ -1388,19 +1434,14 @@ main{display:block;}
           let isValid = true;
           ['name', 'email', 'subject', 'message'].forEach(field => {
             const input = form.querySelector(`[name="${field}"]`);
-            const errorDiv = input.parentElement.querySelector('.form-error');
             if (!input.value.trim()) {
-              errorDiv.textContent = 'Required';
-              input.classList.add('error');
+              setFieldError(field, 'Required');
+              isValid = false;
+            } else if (field === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
+              setFieldError(field, 'Invalid email');
               isValid = false;
             } else {
-              errorDiv.textContent = '';
-              input.classList.remove('error');
-              if (field === 'email' && !/^\S+@\S+\.\S+$/.test(input.value)) {
-                errorDiv.textContent = 'Invalid email';
-                input.classList.add('error');
-                isValid = false;
-              }
+              setFieldError(field, '');
             }
           });
 
@@ -1414,27 +1455,47 @@ main{display:block;}
           statusDiv.textContent = 'Sending…';
           submitBtn.classList.add('is-loading');
 
-          try {
-            const response = await fetch(FORM_ENDPOINT, {
-              method: 'POST',
-              headers: { 'Accept': 'application/json' },
-              body: new FormData(form)
-            });
-            if (response.ok) {
-              statusDiv.className = 'form-status success';
-              statusDiv.innerHTML = '<i class="bx bx-check-circle"></i> Message sent successfully! I\'ll reply within 24 hours.';
-              form.reset();
-            } else {
-              throw new Error('Relay responded with an error');
+          let delivered = false;
+          let stoppedForValidation = false;
+
+          for (const endpoint of CONTACT_ENDPOINTS) {
+            try {
+              const formData = new FormData(form);
+              const { response, payload, succeeded } = await tryEndpoint(endpoint, formData);
+
+              if (succeeded) {
+                statusDiv.className = 'form-status success';
+                statusDiv.innerHTML = '<i class="bx bx-check-circle"></i> ' +
+                  (payload.message || "Message sent successfully! I'll reply within 24 hours.");
+                form.reset();
+                delivered = true;
+                break;
+              }
+
+              // A real validation failure from OUR OWN backend (bad input,
+              // not a down server) shouldn't be retried elsewhere — show the
+              // field errors and stop instead of forwarding invalid data on.
+              if (endpoint.type === 'own' && response.status === 400 && payload && payload.errors) {
+                Object.entries(payload.errors).forEach(([field, msg]) => setFieldError(field, msg));
+                statusDiv.className = 'form-status error';
+                statusDiv.textContent = payload.message || 'Please fix the errors above.';
+                stoppedForValidation = true;
+                break;
+              }
+
+              console.warn(`Contact endpoint did not confirm delivery: ${endpoint.url}`, payload);
+            } catch (err) {
+              console.error(`Contact endpoint unreachable: ${endpoint.url}`, err);
             }
-          } catch (error) {
-            console.error('Contact form error:', error);
-            statusDiv.className = 'form-status error';
-            statusDiv.innerHTML = 'Network error — please email me directly at <a href="mailto:yohanreta9@gmail.com" style="color:inherit;text-decoration:underline;">yohanreta9@gmail.com</a>.';
-          } finally {
-            submitBtn.classList.remove('is-loading');
-            if (statusDiv.classList.contains('success')) setTimeout(() => { statusDiv.textContent = ''; }, 6000);
           }
+
+          if (!delivered && !stoppedForValidation) {
+            statusDiv.className = 'form-status error';
+            statusDiv.innerHTML = 'Message could not be delivered automatically — please email me directly at <a href="mailto:yohanreta9@gmail.com" style="color:inherit;text-decoration:underline;">yohanreta9@gmail.com</a> instead.';
+          }
+
+          submitBtn.classList.remove('is-loading');
+          if (statusDiv.classList.contains('success')) setTimeout(() => { statusDiv.textContent = ''; }, 6000);
         });
       }
     });

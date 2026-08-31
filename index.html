@@ -16,7 +16,14 @@
 
 <title>Yohannes Reta | Senior ICT & Project Management Professional</title>
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%2305070f'/%3E%3Ctext x='32' y='42' font-family='Arial,Helvetica,sans-serif' font-weight='700' font-size='24' fill='%2322d3ee' text-anchor='middle'%3EYR%3C/text%3E%3C/svg%3E">
+<!-- Favicon set — covers browser tabs (incl. the URL/address-bar icon), bookmarks, iOS home screen, and Android/PWA icons -->
+<link rel="icon" href="assets/images/favicon/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/images/favicon/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/images/favicon/android-chrome-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
+<link rel="manifest" href="assets/images/favicon/site.webmanifest">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,10 +206,11 @@ main{display:block;}
 .brand{display:flex;align-items:center;gap:.8rem;}
 .brand-mark{
   width:44px;height:44px;border-radius:13px;flex-shrink:0;
-  background:linear-gradient(135deg,var(--primary),var(--secondary));
   display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-weight:700;
-  box-shadow:0 6px 18px rgba(37,99,235,.35);
+  /* box-shadow:0 6px 18px rgba(37,99,235,.35); */
+  overflow:hidden;padding:4px;
 }
+.brand-mark img{width:100%;height:100%;object-fit:contain;display:block;}
 .brand-text{display:flex;flex-direction:column;line-height:1.25;}
 .brand-name{font-family:var(--font-display);font-weight:700;font-size:1.04rem;color:var(--text-primary);letter-spacing:-.01em;}
 .brand-role{font-family:var(--font-mono);font-size:.65rem;letter-spacing:.06em;color:var(--text-muted);text-transform:uppercase;}
@@ -273,7 +281,7 @@ main{display:block;}
 
 .hero-badge{
   display:inline-flex;align-items:center;gap:.5rem;background:var(--glass-bg);backdrop-filter:blur(10px);
-  border:1px solid var(--glass-border);color:var(--secondary);padding:.55rem 1.3rem;border-radius:40px;
+  border:1px solid var(--glass-border);color:var(--secondary);padding:.45rem 1.2rem;border-radius:30px;
   font-size:.82rem;font-family:var(--font-mono);letter-spacing:.03em;font-weight:500;margin-bottom:1rem;box-shadow:var(--shadow-sm);
 }
 .hero-badge i{animation:pulse 2.4s ease-in-out infinite;}
@@ -315,12 +323,13 @@ main{display:block;}
   filter:blur(60px);animation:pulse 5s ease-in-out infinite;
 }
 
-/* Organic blob shape behind the photo for a softer, more designed frame */
+/* Organic blob shape — now a soft halo peeking out from behind the photo,
+   since the photo itself is clipped into the same blob curve below */
 .visual-blob{
   position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:1;
-  width:400px;height:400px;
+  width:428px;height:428px;
   background:linear-gradient(150deg,var(--primary),var(--secondary));
-  opacity:.16;filter:blur(2px);
+  opacity:.28;filter:blur(6px);
   border-radius:42% 58% 65% 35% / 45% 40% 60% 55%;
   animation:blobMorph 12s ease-in-out infinite;
 }
@@ -329,10 +338,20 @@ main{display:block;}
   50%{border-radius:58% 42% 35% 65% / 55% 60% 40% 45%;}
 }
 
-.profile-photo{position:relative;z-index:2;width:min(380px,86%);aspect-ratio:var(--photo-ratio, 4/5);animation:float 10s ease-in-out infinite;}
+/* Photo now lives INSIDE the balloon: the container is clipped to the same
+   morphing organic curve, so the picture itself takes the blob shape rather
+   than floating as a rectangle on top of it. */
+.profile-photo{
+  position:relative;z-index:2;width:min(380px,86%);aspect-ratio:1;
+  border-radius:42% 58% 65% 35% / 45% 40% 60% 55%;
+  overflow:hidden;
+  border:3px solid rgba(255,255,255,.14);
+  box-shadow:0 30px 60px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.06);
+  animation:float 10s ease-in-out infinite, blobMorph 12s ease-in-out infinite;
+}
 .photo-slide{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center top;
-  display:block;filter:drop-shadow(0 30px 50px rgba(0,0,0,.4));
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;
+  display:block;
   opacity:0;transition:opacity 1.6s ease;pointer-events:none;
 }
 .photo-slide.active{opacity:1;}
@@ -607,7 +626,8 @@ main{display:block;}
 .footer{border-top:1px solid var(--border-color);padding:3.5rem 0 1.75rem;margin-top:2rem;background:color-mix(in srgb,var(--bg-elevated) 35%,transparent);}
 .footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem;}
 .footer-brand{display:flex;flex-direction:column;align-items:flex-start;}
-.footer-logo{width:56px;height:56px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:1.15rem;box-shadow:var(--shadow-md);}
+.footer-logo{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:1.15rem;box-shadow:var(--shadow-md);overflow:hidden;padding:8px;}
+.footer-logo img{width:100%;height:100%;object-fit:contain;display:block;}
 .footer-brand h3{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:.4rem;}
 .footer-brand p{font-size:.92rem;color:var(--text-secondary);}
 .footer-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;}
@@ -652,7 +672,7 @@ main{display:block;}
   <header class="navbar" id="navbar">
     <div class="navbar-inner">
       <a href="#hero" class="brand">
-        <div class="brand-mark">YR</div>
+        <div class="brand-mark"><img src="assets/images/brand.png" alt="Yohannes Reta logo" loading="eager"></div>
         <div class="brand-text">
           <span class="brand-name">Yohannes Reta</span>
           <span class="brand-role">ICT &amp; Project Mgmt.</span>
@@ -735,7 +755,7 @@ main{display:block;}
         <div class="visual-footer">
           <div class="photo-tag"><span class="dot"></span>Open to work</div>
           <div class="visual-socials">
-            <a href="https://yebeflow.com" class="social-link" aria-label="YebeFlow" target="_blank" rel="noopener"><i class="bx bx-globe"></i></a>
+            <a href="https://yeneflow.com" class="social-link" aria-label="YeneFlow" target="_blank" rel="noopener"><i class="bx bx-globe"></i></a>
             <a href="https://www.linkedin.com/in/yohannes-reta/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
             <a href="https://github.com/yohana9" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><i class="bx bxl-github"></i></a>
             <a href="mailto:yohanreta9@gmail.com" class="social-link" aria-label="Email"><i class="bx bx-envelope"></i></a>
@@ -1078,9 +1098,9 @@ main{display:block;}
               <div class="contact-row-text"><span class="contact-row-label">Phone</span><span class="contact-row-value">+251 09 63 94 93 32</span></div>
               <i class="bx bx-chevron-right contact-row-arrow"></i>
             </a>
-            <a href="https://maps.google.com/?q=Dire+Dawa,Ethiopia" class="contact-row glass" target="_blank" rel="noopener">
+            <a href="https://maps.google.com/?q=Addis+Ababa,Ethiopia" class="contact-row glass" target="_blank" rel="noopener">
               <div class="contact-icon"><i class="bx bx-map"></i></div>
-              <div class="contact-row-text"><span class="contact-row-label">Location</span><span class="contact-row-value">Dire Dawa, Ethiopia</span></div>
+              <div class="contact-row-text"><span class="contact-row-label">Location</span><span class="contact-row-value">Addis Ababa, Bole, Ethiopia</span></div>
               <i class="bx bx-chevron-right contact-row-arrow"></i>
             </a>
 
@@ -1089,7 +1109,7 @@ main{display:block;}
               <p>Typical response time</p>
               <div class="metric-value">&lt; 24 hrs</div>
               <div class="social-links" style="margin-top:1.25rem;">
-                <a href="https://yebeflow.com" class="social-link" aria-label="YebeFlow" target="_blank" rel="noopener"><i class="bx bx-globe"></i></a>
+                <a href="https://yeneflow.com" class="social-link" aria-label="YeneFlow" target="_blank" rel="noopener"><i class="bx bx-globe"></i></a>
                 <a href="https://www.linkedin.com/in/yohannes-reta/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="bx bxl-linkedin"></i></a>
                 <a href="https://github.com/yohana9" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><i class="bx bxl-github"></i></a>
               </div>
@@ -1101,8 +1121,8 @@ main{display:block;}
               <div class="form-header"><h3>Send a Message</h3><p>Fill in the form below and I'll get back to you personally</p></div>
 
               <div class="form-row">
-                <div class="form-group"><label for="name"><i class="bx bx-user"></i>Full Name</label><input type="text" id="name" name="name" placeholder="Jane Doe" required autocomplete="name"><div class="form-error"></div></div>
-                <div class="form-group"><label for="email"><i class="bx bx-envelope"></i>Email Address</label><input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email"><div class="form-error"></div></div>
+                <div class="form-group"><label for="name"><i class="bx bx-user"></i>Full Name</label><input type="text" id="name" name="name" placeholder="Abeba Belachew" required autocomplete="name"><div class="form-error"></div></div>
+                <div class="form-group"><label for="email"><i class="bx bx-envelope"></i>Email Address</label><input type="email" id="email" name="email" placeholder="abebe@company.com" required autocomplete="email"><div class="form-error"></div></div>
               </div>
 
               <div class="form-group"><label for="subject"><i class="bx bx-edit"></i>Subject</label><input type="text" id="subject" name="subject" placeholder="Let's talk about..." required><div class="form-error"></div></div>
@@ -1148,19 +1168,19 @@ main{display:block;}
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <div class="footer-logo">YR</div>
+          <div class="footer-logo"><img src="assets/images/brand.png" alt="Yohannes Reta logo" loading="lazy"></div>
           <h3>Yohannes Reta</h3>
           <p>Senior ICT &amp; Project Management Professional</p>
         </div>
         <div class="footer-links">
           <div class="footer-column"><h4>Quick Links</h4><a href="#hero">Home</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#projects">Projects</a></div>
           <div class="footer-column"><h4>Resources</h4><a href="assets/images/Download/Resume.pdf" download>Download CV</a><a href="#certificates">Certifications</a><a href="#skills">Skills</a><a href="#contact">Contact</a></div>
-          <div class="footer-column"><h4>Connect</h4><a href="https://yebeflow.com" target="_blank" rel="noopener">YebeFlow.com</a><a href="https://www.linkedin.com/in/yohannes-reta/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/yohana9" target="_blank" rel="noopener">GitHub</a><a href="mailto:yohanreta9@gmail.com">Email</a><a href="tel:+2510963949332">Phone</a></div>
+          <div class="footer-column"><h4>Connect</h4><a href="https://yeneflow.com" target="_blank" rel="noopener">YeneFlow.com</a><a href="https://www.linkedin.com/in/yohannes-reta/" target="_blank" rel="noopener">LinkedIn</a><a href="https://github.com/yohana9" target="_blank" rel="noopener">GitHub</a><a href="mailto:yohanreta9@gmail.com">Email</a><a href="tel:+2510963949332">Phone</a></div>
         </div>
       </div>
       <div class="footer-bottom">
         <p>&copy; <span id="currentYear"></span> Yohannes Reta. All rights reserved.</p>
-        <p>Built with passion in Dire Dawa, Ethiopia</p>
+        <p>Built with passion in Addis Ababa, Ethiopia</p>
       </div>
     </div>
   </footer>

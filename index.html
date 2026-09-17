@@ -408,7 +408,7 @@ main{display:block;}
 /* ============================================================
    ABOUT — three equal cards in one row on medium+ screens
    ============================================================ */
-.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.75rem;align-items:stretch;}
+.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.75rem;align-items:stretch;}
 @media (max-width:900px){
   .about-grid{grid-template-columns:1fr;}
 }
@@ -698,6 +698,7 @@ main{display:block;}
         <div class="dropdown" id="websitesDropdown">
           <button class="btn btn-outline btn-sm dropdown-toggle hide-mobile" id="dropdownToggle"><span>Websites for Sale</span> <i class="bx bx-chevron-down"></i></button>
           <div class="dropdown-menu">
+            <a href="https://melhik.yeneflow.com/" class="dropdown-item" target="_blank" rel="noopener"><i class="bx bx-store"></i><span>Melhik</span></a>
             <a href="https://servicedesk.motiengineering.com/" class="dropdown-item" target="_blank" rel="noopener"><i class="bx bx-support"></i><span>Service Desk System</span></a>
             <a href="https://fanareports.yeneflow.com/" class="dropdown-item" target="_blank" rel="noopener"><i class="bx bx-line-chart"></i><span>Reporting System</span></a>
           </div>
@@ -724,8 +725,8 @@ main{display:block;}
           <span>SYSTEMS, NETWORK & INFRASTRUCTURE &amp; SPECIALIST</span>
           <span>Full-Stack Problem Solver</span>
         </div>
-        <h1 class="hero-title">Project Management, Grounded in <span class="text-gradient">ICT Infrastructure</span></h1>
-        <p class="hero-subtitle">Senior Project Management Officer with 6+ years of hands-on ICT experience — currently coordinating digital banking, security, and virtualization initiatives at Moti Engineering PLC. I bring technical grounding to project delivery, so systems stay reliable and timelines stay realistic.</p>
+        <h1 class="hero-title">ICT Professional &amp; <span class="text-gradient">Senior Project Manager</span></h1>
+        <p class="hero-subtitle">IT professional with 6+ years of experience across systems, infrastructure, and technology solutioning. Currently leading high-risk, time-sensitive projects spanning digital banking platforms, kiosk/CVM deployments, and SIEM/SOC infrastructure as Senior Project Management Officer at Moti Engineering PLC.</p>
 
         <div class="hero-actions">
           <a href="#contact" class="btn btn-primary"><span>Get In Touch</span> <i class="bx bx-chevron-right"></i></a>
@@ -785,10 +786,10 @@ main{display:block;}
         <div class="about-grid">
           <div class="about-card glass accent-top" data-aos="fade-right">
             <div class="about-card-header"><div class="about-icon"><i class="bx bx-user-circle"></i></div><h3>About Me</h3></div>
-            <p>Senior Project Management Officer with a strong technical foundation in ICT infrastructure and systems operations. Proven expertise in managing complex projects, technical teams, and enterprise-level initiatives with a results-driven approach.</p>
+            <p>Senior Project Management Officer with a strong technical foundation spanning IT systems, infrastructure, and technology solutioning. Leads high-risk, time-sensitive initiatives across digital banking platforms, kiosk/CVM deployments, and SIEM/SOC environments, combining hands-on VMware ESXi and Level 2/3 systems expertise with the ability to architect custom web-based operational platforms and automated reporting solutions.</p>
             <div class="about-highlights">
               <div class="highlight-item"><i class="bx bx-check-circle"></i><span>6+ years ICT experience</span></div>
-              <div class="highlight-item"><i class="bx bx-check-circle"></i><span>Enterprise infrastructure management</span></div>
+              <div class="highlight-item"><i class="bx bx-check-circle"></i><span>Digital banking &amp; SIEM/SOC project delivery</span></div>
               <div class="highlight-item"><i class="bx bx-check-circle"></i><span>Full-stack development capabilities</span></div>
             </div>
           </div>
@@ -808,11 +809,26 @@ main{display:block;}
           <div class="about-card glass accent-top" data-aos="fade-left">
             <div class="about-card-header"><div class="about-icon"><i class="bx bx-chart"></i></div><h3>Key Achievements</h3></div>
             <ul class="achievement-list">
+              <li><i class="bx bx-trending-up"></i><span>Leading high-risk technology projects across digital banking, kiosk/CVM, and SIEM/SOC infrastructure at Moti Engineering PLC</span></li>
               <li><i class="bx bx-trending-up"></i><span>Reduced system downtimes by 25% through VMware ESXi optimization</span></li>
               <li><i class="bx bx-trending-up"></i><span>Achieved 90% SLA compliance in IT support resolution</span></li>
               <li><i class="bx bx-trending-up"></i><span>Maintained 95%+ lab uptime across university computer facilities</span></li>
               <li><i class="bx bx-trending-up"></i><span>98% pass rate in technical training programs</span></li>
             </ul>
+          </div>
+
+          <div class="about-card glass accent-top" data-aos="fade-up">
+            <div class="about-card-header"><div class="about-icon"><i class="bx bx-book-reader"></i></div><h3>Education</h3></div>
+            <div class="achievement-list" style="gap:1.1rem;display:flex;flex-direction:column;">
+              <div>
+                <div class="highlight-item" style="margin-bottom:.2rem;"><i class="bx bx-check-circle"></i><span><strong>BSc, Computer Science</strong></span></div>
+                <p style="margin-left:1.9rem;font-size:.92rem;color:var(--text-secondary);">Lucy College, Dire Dawa, GPA 3.4 · Oct 2018 - Dec 2021</p>
+              </div>
+              <div>
+                <div class="highlight-item" style="margin-bottom:.2rem;"><i class="bx bx-check-circle"></i><span><strong>Diploma, Hardware &amp; Networking Service</strong></span></div>
+                <p style="margin-left:1.9rem;font-size:.92rem;color:var(--text-secondary);">MZM Polytechnic College (TVET), Dire Dawa, COC Certified · Oct 2014 - Feb 2018</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -836,13 +852,15 @@ main{display:block;}
             <div class="timeline-item current">
               <div class="timeline-marker"><i class="bx bx-briefcase"></i></div>
               <div class="timeline-content glass">
-                <div class="timeline-header"><h3>Senior Project Management Officer</h3><span class="timeline-date">Nov 2021 – Present</span></div>
-                <div class="timeline-company"><i class="bx bx-building"></i><span>Appointed based on proven ICT expertise</span></div>
-                <p class="timeline-description">Leading complex projects and enterprise-level initiatives with a strong technical foundation. Managing cross-functional coordination and technical team leadership.</p>
+                <div class="timeline-header"><h3>Senior Project Management Officer</h3><span class="timeline-date">Nov 2025 – Present</span></div>
+                <div class="timeline-company"><i class="bx bx-building"></i><span>Moti Engineering PLC, Addis Ababa, Ethiopia</span></div>
+                <p class="timeline-description">Leading end-to-end execution of technology projects, including digital banking systems, kiosk/CVM deployments, and SIEM/SOC security infrastructure, with close coordination across banks, vendors, and internal engineering teams.</p>
                 <ul class="timeline-highlights">
-                  <li>Enterprise project management and strategic planning</li>
-                  <li>Technical team coordination and performance management</li>
-                  <li>Infrastructure optimization and system integration</li>
+                  <li>Manage high-risk, time-sensitive projects requiring close coordination with banks, vendors, and internal engineering teams</li>
+                  <li>Drive project recovery and stabilization for systems requiring post-deployment corrections and vendor escalation</li>
+                  <li>Produce structured documentation, including implementation plans, risk matrices, technical reports, and stakeholder updates</li>
+                  <li>Monitor and report KPIs; prepare daily, weekly, and monthly analytical reports for management</li>
+                  <li>Coordinate cross-functional teams across infrastructure, application, and support units</li>
                 </ul>
               </div>
             </div>
@@ -850,15 +868,15 @@ main{display:block;}
             <div class="timeline-item">
               <div class="timeline-marker"><i class="bx bx-server"></i></div>
               <div class="timeline-content glass">
-                <div class="timeline-header"><h3>ICT Technical Analyst II</h3><span class="timeline-date">Jul 2024 – Sep 2025</span></div>
-                <div class="timeline-company"><i class="bx bx-building"></i><span>Moti Engineering PLC (Outsourced to Moenco Inchcape)</span></div>
+                <div class="timeline-header"><h3>ICT Technical Analyst II</h3><span class="timeline-date">Jul 2024 – Nov 2025</span></div>
+                <div class="timeline-company"><i class="bx bx-building"></i><span>Moti Engineering PLC (Outsourced via Moenco Inchcape), Addis Ababa, Ethiopia</span></div>
                 <p class="timeline-description">Managed enterprise IT infrastructure with focus on virtualization, system administration, and technical support operations.</p>
                 <ul class="timeline-highlights">
-                  <li>Managed VMware ESXi servers, reducing system downtimes by 25%</li>
-                  <li>Provided Level 2/3 support via Zoho Service Desk (90% SLA compliance)</li>
-                  <li>Administered Endpoint Central for 12+ user devices</li>
-                  <li>Maintained POS, Printer Server, and CICO biometric systems</li>
-                  <li>Configured network infrastructure and collaborated on security audits</li>
+                  <li>Managed VMware ESXi virtualized servers and data center operations, reducing system downtime by 25%</li>
+                  <li>Provided Level 2/3 support via Zoho Service Desk, maintaining 90% SLA compliance</li>
+                  <li>Administered Endpoint Central across 12+ user devices for patching, monitoring, and asset management</li>
+                  <li>Maintained POS servers, printer servers, and CICO biometric attendance systems</li>
+                  <li>Configured LAN/WAN network infrastructure and supported periodic security audits</li>
                 </ul>
               </div>
             </div>
@@ -866,15 +884,15 @@ main{display:block;}
             <div class="timeline-item">
               <div class="timeline-marker"><i class="bx bx-chip"></i></div>
               <div class="timeline-content glass">
-                <div class="timeline-header"><h3>Senior Technical Assistant &amp; Lab Coordinator</h3><span class="timeline-date">Dec 2018 – 2024</span></div>
-                <div class="timeline-company"><i class="bx bx-building"></i><span>Dire Dawa University</span></div>
+                <div class="timeline-header"><h3>Senior Technical Assistant - Computer Lab Instructor &amp; Organizer</h3><span class="timeline-date">Jul 2018 - Jun 2024</span></div>
+                <div class="timeline-company"><i class="bx bx-building"></i><span>Dire Dawa University, Dire Dawa, Ethiopia</span></div>
                 <p class="timeline-description">Technical leadership in computer laboratory management, system administration, and academic instruction for engineering students.</p>
                 <ul class="timeline-highlights">
-                  <li>Organized &amp; equipped 10+ laboratories for 1000+ students</li>
-                  <li>Collaborated with the team to organize the first Computer Lab Exit Exam and support IT Task Force initiatives</li>
-                  <li>Maintained 95%+ lab uptime through proactive maintenance</li>
-                  <li>Authored lab manuals reducing setup time by 30%</li>
-                  <li>Taught Java, DBMS, and OS lab sessions</li>
+                  <li>Organized &amp; equipped 10+ computer labs for the Computer Engineering program, serving 1,000+ students while maintaining 95%+ uptime</li>
+                  <li>Taught lab courses in Java (OOP I &amp; II), DBMS (SQL), and Operating Systems with a 98% pass rate</li>
+                  <li>Authored lab manuals and SOPs that reduced lab setup time by 30%</li>
+                  <li>Coordinated as part of a task force to prepare IT infrastructure and software for the university's online exit-exam platform</li>
+                  <li>Conducted digital-skills workshops for faculty and students</li>
                 </ul>
               </div>
             </div>
@@ -883,12 +901,11 @@ main{display:block;}
               <div class="timeline-marker"><i class="bx bx-data"></i></div>
               <div class="timeline-content glass">
                 <div class="timeline-header"><h3>Data Encoder &amp; Election Executive</h3><span class="timeline-date">4-Month Contract</span></div>
-                <div class="timeline-company"><i class="bx bx-building"></i><span>National Election Board of Ethiopia (NEBE)</span></div>
+                <div class="timeline-company"><i class="bx bx-building"></i><span>National Election Board of Ethiopia (NEBE), Dire Dawa, Ethiopia</span></div>
                 <p class="timeline-description">Field data management and election execution support during national elections.</p>
                 <ul class="timeline-highlights">
-                  <li>Encoded voter data in field operations</li>
-                  <li>Assisted on-site election execution and audits</li>
-                  <li>Coordinated data integrity with headquarters</li>
+                  <li>Encoded voter data during field operations in support of national election logistics</li>
+                  <li>Supported on-site election execution and audit procedures, ensuring data accuracy and compliance</li>
                 </ul>
               </div>
             </div>
@@ -990,6 +1007,7 @@ main{display:block;}
               <div class="skill-item"><div class="skill-info"><span>Data Center Management</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
               <div class="skill-item"><div class="skill-info"><span>Network Administration</span><span>88%</span></div><div class="skill-bar"><div class="skill-progress" style="width:88%"></div></div></div>
               <div class="skill-item"><div class="skill-info"><span>System Configuration</span><span>92%</span></div><div class="skill-bar"><div class="skill-progress" style="width:92%"></div></div></div>
+              <div class="skill-item"><div class="skill-info"><span>Helpdesk &amp; Ticketing (Zoho, Endpoint Central)</span><span>90%</span></div><div class="skill-bar"><div class="skill-progress" style="width:90%"></div></div></div>
             </div>
           </div>
 
@@ -1012,6 +1030,8 @@ main{display:block;}
               <div class="skill-badge"><i class="bx bx-group"></i><span>Team Leadership</span></div>
               <div class="skill-badge"><i class="bx bx-message-detail"></i><span>Technical Training</span></div>
               <div class="skill-badge"><i class="bx bx-time"></i><span>Project Management</span></div>
+              <div class="skill-badge"><i class="bx bx-badge-check"></i><span>ISO 9001:2016 QMS</span></div>
+              <div class="skill-badge"><i class="bx bx-file"></i><span>SOP &amp; KB Documentation</span></div>
             </div>
           </div>
         </div>
@@ -1033,12 +1053,12 @@ main{display:block;}
         <div class="certificates-grid">
           <div class="certificate-card glass accent-top" data-aos="zoom-in" data-aos-delay="100">
             <div class="certificate-image"><img src="assets/images/Certificates/project.png" alt="PM Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="HIK-VISION"><i class="bx bx-zoom-in"></i></button></div></div>
-            <div class="certificate-content"><h3>Project Management Training</h3><p>Advanced Project Management (Scope, Time, Cost, Budget, Communication, Procurement Management). and other PMBOok Modules</p><div class="certificate-tag">School of Commerce</div><a href="#" class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Commerce-AAU</span></a></div>
+            <div class="certificate-content"><h3>Project Management Training</h3><p>Advanced Project Management (Scope, Time, Cost, Budget, Communication, Procurement Management) and other PMBOK modules</p><div class="certificate-tag">School of Commerce</div><a href="#" class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Commerce-AAU</span></a></div>
           </div>
 
            <div class="certificate-card glass accent-top" data-aos="zoom-in" data-aos-delay="100">
             <div class="certificate-image"><img src="assets/images/Certificates/digital.jpeg" alt="Zega Digital Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="HIK-VISION"><i class="bx bx-zoom-in"></i></button></div></div>
-            <div class="certificate-content"><h3>Digital World Litracy Learning </h3><p> with the Modules of Media Literacy, Privacy, Online Security, Youth Online Safety & Wellbeing, AI Literacy </p><div class="certificate-tag">School of Commerce</div><a href="https://zega-digital-bot.onrender.com/verify/ZEGA-48F53HNR" class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Zega Bot </span></a></div>
+            <div class="certificate-content"><h3>Digital World Literacy</h3><p>Modules covering Media Literacy, Privacy, Online Security, Youth Online Safety &amp; Wellbeing, and AI Literacy</p><div class="certificate-tag">School of Commerce</div><a href="https://zega-digital-bot.onrender.com/verify/ZEGA-48F53HNR" class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Zega Bot</span></a></div>
           </div>
 
           <div class="certificate-card glass accent-top" data-aos="zoom-in" data-aos-delay="100">
@@ -1072,7 +1092,7 @@ main{display:block;}
           </div>
 
           <div class="certificate-card glass accent-top" data-aos="zoom-in" data-aos-delay="200">
-            <div class="certificate-image"><img src="assets/images/Certificates/XDR_Sales.png" alt="CISCO Black Belt Academy — XDR Sales" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="xdr-sales"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/XDR_Sales.png" alt="CISCO Black Belt Academy - XDR Sales" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="xdr-sales"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>CISCO Black Belt Academy</h3><p>Black Belt XDR Sales</p><div class="certificate-tag">Cisco</div><a href="#" class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Cisco</span></a></div>
           </div>
         </div>
@@ -1521,7 +1541,7 @@ main{display:block;}
 
           if (!delivered && !stoppedForValidation) {
             statusDiv.className = 'form-status error';
-            statusDiv.innerHTML = 'Message could not be delivered automatically — please email me directly at <a href="mailto:yohanreta9@gmail.com" style="color:inherit;text-decoration:underline;">yohanreta9@gmail.com</a> instead.';
+            statusDiv.innerHTML = 'Message could not be delivered automatically. Please email me directly at <a href="mailto:yohanreta9@gmail.com" style="color:inherit;text-decoration:underline;">yohanreta9@gmail.com</a> instead.';
           }
 
           submitBtn.classList.remove('is-loading');

@@ -301,6 +301,17 @@ main{display:block;}
 
 .hero-title{font-family:var(--font-display);font-size:clamp(2.1rem,3vw,3rem);font-weight:500;line-height:1.22;letter-spacing:-.01em;margin-bottom:1.35rem;}
 .hero-title .text-gradient{font-weight:700;}
+.hero-title-and{
+  font-style:italic;font-weight:600;
+  background:linear-gradient(90deg,var(--primary) 0%,var(--accent) 25%,var(--secondary) 50%,var(--accent) 75%,var(--primary) 100%);
+  background-size:250% auto;
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  animation:heroAndShine 4s linear infinite;
+}
+@keyframes heroAndShine{
+  0%{background-position:0% center;}
+  100%{background-position:250% center;}
+}
 .hero-title em{font-style:italic;font-weight:500;opacity:.92;}
 .text-gradient{background:linear-gradient(135deg,var(--primary),var(--secondary));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
 [data-theme="dark"] .text-gradient{filter:drop-shadow(0 0 20px rgba(34,211,238,.22));}
@@ -408,7 +419,7 @@ main{display:block;}
 /* ============================================================
    ABOUT — three equal cards in one row on medium+ screens
    ============================================================ */
-.about-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.75rem;align-items:stretch;}
+.about-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.75rem;align-items:stretch;}
 @media (max-width:900px){
   .about-grid{grid-template-columns:1fr;}
 }
@@ -725,7 +736,7 @@ main{display:block;}
           <span>SYSTEMS, NETWORK & INFRASTRUCTURE &amp; SPECIALIST</span>
           <span>Full-Stack Problem Solver</span>
         </div>
-        <h1 class="hero-title">ICT Professional &amp; <span class="text-gradient">Senior Project Manager</span></h1>
+        <h1 class="hero-title">ICT Professional <span class="hero-title-and">and</span><br><span class="text-gradient">Senior Project Manager</span></h1>
         <p class="hero-subtitle">IT professional with 6+ years of experience across systems, infrastructure, and technology solutioning. Currently leading high-risk, time-sensitive projects spanning digital banking platforms, kiosk/CVM deployments, and SIEM/SOC infrastructure as Senior Project Management Officer at Moti Engineering PLC.</p>
 
         <div class="hero-actions">
@@ -794,6 +805,17 @@ main{display:block;}
             </div>
           </div>
 
+          <div class="about-card glass accent-top" data-aos="fade-left">
+            <div class="about-card-header"><div class="about-icon"><i class="bx bx-chart"></i></div><h3>Key Achievements</h3></div>
+            <ul class="achievement-list">
+              <li><i class="bx bx-trending-up"></i><span>Leading high-risk technology projects across digital banking, kiosk/CVM, and SIEM/SOC infrastructure at Moti Engineering PLC</span></li>
+              <li><i class="bx bx-trending-up"></i><span>Reduced system downtimes by 25% through VMware ESXi optimization</span></li>
+              <li><i class="bx bx-trending-up"></i><span>Achieved 90% SLA compliance in IT support resolution</span></li>
+              <li><i class="bx bx-trending-up"></i><span>Maintained 95%+ lab uptime across university computer facilities</span></li>
+              <li><i class="bx bx-trending-up"></i><span>98% pass rate in technical training programs</span></li>
+            </ul>
+          </div>
+
           <div class="about-card glass accent-top" data-aos="fade-up">
             <div class="about-card-header"><div class="about-icon"><i class="bx bx-bullseye"></i></div><h3>Career Focus</h3></div>
             <p>Delivering seamless business continuity through robust IT systems management, technical issue resolution, and comprehensive user training programs.</p>
@@ -804,17 +826,6 @@ main{display:block;}
               <span class="focus-tag">Team Leadership</span>
               <span class="focus-tag">Technical Training</span>
             </div>
-          </div>
-
-          <div class="about-card glass accent-top" data-aos="fade-left">
-            <div class="about-card-header"><div class="about-icon"><i class="bx bx-chart"></i></div><h3>Key Achievements</h3></div>
-            <ul class="achievement-list">
-              <li><i class="bx bx-trending-up"></i><span>Leading high-risk technology projects across digital banking, kiosk/CVM, and SIEM/SOC infrastructure at Moti Engineering PLC</span></li>
-              <li><i class="bx bx-trending-up"></i><span>Reduced system downtimes by 25% through VMware ESXi optimization</span></li>
-              <li><i class="bx bx-trending-up"></i><span>Achieved 90% SLA compliance in IT support resolution</span></li>
-              <li><i class="bx bx-trending-up"></i><span>Maintained 95%+ lab uptime across university computer facilities</span></li>
-              <li><i class="bx bx-trending-up"></i><span>98% pass rate in technical training programs</span></li>
-            </ul>
           </div>
 
           <div class="about-card glass accent-top" data-aos="fade-up">

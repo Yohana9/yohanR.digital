@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="description" content="Senior ICT Technical Analyst & Project Management Officer – 6+ years enterprise IT experience. VMware, networking, full-stack solutions.">
 <meta name="keywords" content="ICT Technical Analyst, Project Management, VMware ESXi, Network Administration, Full-Stack Development">
-<meta name="theme-color" content="#05070f">
-<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#f6f7fb">
+<meta name="color-scheme" content="light dark">
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="Yohannes Reta | Senior ICT & Project Management Professional">
@@ -86,12 +86,17 @@
    RESET & BASE
    ============================================================ */
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:var(--navbar-h);}
+html{scroll-behavior:smooth;font-size:16px;scroll-padding-top:var(--navbar-h);width:100%;max-width:100%;overflow-x:hidden;}
 body{
   font-family:var(--font-body);background:var(--bg-base);color:var(--text-primary);
-  line-height:1.65;min-height:100vh;overflow-x:hidden;position:relative;
+  line-height:1.65;min-height:100vh;min-height:100dvh;width:100%;max-width:100%;
+  overflow-x:hidden;position:relative;
   transition:background var(--transition),color var(--transition);
 }
+/* Safety net: nothing is ever allowed to force horizontal scroll, on any device */
+img,svg,video,canvas,iframe,table,pre,code{max-width:100%;}
+img,svg,video{height:auto;}
+pre,code{overflow-x:auto;}
 body::before{
   content:'';position:fixed;inset:0;z-index:-2;
   background:var(--gradient-1),var(--gradient-2),var(--gradient-3);
@@ -269,7 +274,7 @@ main{display:block;}
    HERO
    ============================================================ */
 .hero{
-  min-height:100vh;box-sizing:border-box;display:flex;align-items:center;justify-content:center;
+  min-height:100vh;min-height:100dvh;box-sizing:border-box;display:flex;align-items:center;justify-content:center;
   padding-top:var(--navbar-h);padding-bottom:2.5rem;position:relative;
 }
 .hero-grid{
@@ -469,7 +474,7 @@ main{display:block;}
 /* ============================================================
    PROJECTS
    ============================================================ */
-.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));gap:2rem;}
 .project-card{overflow:hidden;display:flex;flex-direction:column;height:100%;position:relative;}
 .project-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);}
 .project-index{
@@ -500,7 +505,7 @@ main{display:block;}
 /* ============================================================
    SKILLS
    ============================================================ */
-.skills-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;}
+.skills-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:2rem;}
 .skills-category{padding:2.15rem;transition:var(--transition);}
 .skills-category:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);}
 .category-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.7rem;}
@@ -521,7 +526,7 @@ main{display:block;}
 /* ============================================================
    CERTIFICATES
    ============================================================ */
-.certificates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.6rem;}
+.certificates-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.6rem;}
 .certificate-card{overflow:hidden;display:flex;flex-direction:column;height:100%;}
 .certificate-card:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);}
 .certificate-image{position:relative;height:180px;overflow:hidden;flex-shrink:0;}
@@ -540,7 +545,7 @@ main{display:block;}
 /* ============================================================
    CONTACT
    ============================================================ */
-.contact-layout{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:2.5rem;align-items:start;}
+.contact-layout{display:grid;grid-template-columns:minmax(min(280px,100%),380px) 1fr;gap:2.5rem;align-items:start;}
 .contact-rail{display:flex;flex-direction:column;gap:1rem;position:sticky;top:calc(var(--navbar-h) + 1.5rem);}
 .contact-row{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.25rem;transition:var(--transition);}
 .contact-row:hover{transform:translateX(6px);}
@@ -624,13 +629,13 @@ main{display:block;}
    FOOTER
    ============================================================ */
 .footer{border-top:1px solid var(--border-color);padding:3.5rem 0 1.75rem;margin-top:2rem;background:color-mix(in srgb,var(--bg-elevated) 35%,transparent);}
-.footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2.5rem;}
+.footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:2.5rem;}
 .footer-brand{display:flex;flex-direction:column;align-items:flex-start;}
 .footer-logo{width:56px;height:56px;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff;font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:1.15rem;box-shadow:var(--shadow-md);overflow:hidden;padding:8px;}
 .footer-logo img{width:100%;height:100%;object-fit:contain;display:block;}
 .footer-brand h3{font-family:var(--font-display);font-size:1.25rem;font-weight:700;margin-bottom:.4rem;}
 .footer-brand p{font-size:.92rem;color:var(--text-secondary);}
-.footer-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:2rem;}
+.footer-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(140px,100%),1fr));gap:2rem;}
 .footer-column h4{font-family:var(--font-display);font-size:1rem;font-weight:600;margin-bottom:1.1rem;}
 .footer-column a{display:block;font-size:.92rem;margin-bottom:.7rem;color:var(--text-secondary);transition:.25s;}
 .footer-column a:hover{color:var(--secondary);transform:translateX(5px);}
@@ -653,7 +658,7 @@ main{display:block;}
 }
 </style>
 </head>
-<body data-theme="dark">
+<body data-theme="light">
 
   <div class="preloader" id="preloader">
     <div class="preloader-inner">
@@ -715,8 +720,8 @@ main{display:block;}
         <span class="status-chip"><span class="dot"></span>Available for opportunities</span>
         <div class="hero-badge"><i class='bx bx-terminal' style="margin-right:.4rem;"></i>Senior PM Officer</div>
         <div class="role-ticker">
-          <span>Senior Project Management Officer</span>
-          <span>ICT Infrastructure &amp; Security</span>
+          <span>Senior Project Management</span>
+          <span>SYSTEMS, NETWORK & INFRASTRUCTURE &amp; SPECIALIST</span>
           <span>Full-Stack Problem Solver</span>
         </div>
         <h1 class="hero-title">Project Management, Grounded in <span class="text-gradient">ICT Infrastructure</span></h1>
@@ -1199,7 +1204,7 @@ main{display:block;}
       /* ---------- Theme toggle ---------- */
       const themeToggle = document.getElementById('theme-toggle');
       const body = document.body;
-      const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+      const savedTheme = localStorage.getItem('portfolio-theme') || 'light';
       body.setAttribute('data-theme', savedTheme);
       themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="bx bx-sun"></i>' : '<i class="bx bx-moon"></i>';
       themeToggle.addEventListener('click', () => {

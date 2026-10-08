@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
 <meta name="description" content="Yohannes Reta Hiwetu – Senior Project Management Officer & ICT professional. 6+ years in IT systems, infrastructure, digital banking projects, VMware and custom web solutions.">
 <meta name="keywords" content="ICT Technical Analyst, Project Management, VMware ESXi, Network Administration, Transform web-based Solution">
-<meta name="theme-color" content="#0B3C4D">
+<meta name="theme-color" content="#0B3C4D" id="metaTheme">
 <meta name="color-scheme" content="light dark">
 
 <meta property="og:type" content="website">
@@ -30,10 +30,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<script>window.SITE_CONFIG={/* Base URL of the PHP backend. Change to "php/" if the PHP files live in this site's /php folder. */backend:"https://portfolio.yeneflow.com/"};</script>
 <script>try{var t=localStorage.getItem('portfolio-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <style>
 :root{--paper:#F4F6F5;--surface:#fff;--sunk:#E8EEEC;--ink:#0D2330;--ink2:#3B4F5C;--ink3:#5A6B76;--line:#D3DDDA;--pet:#0B3C4D;--pet2:#0E5167;--gold:#E8B13A;--on-pri:#fff;--pri:var(--pet);--link:#0E5167;--r:.9rem;--rs:.55rem;--nav:3.9rem;--w:76rem;--sh:0 1px 2px rgba(13,35,48,.06),0 8px 24px -12px rgba(13,35,48,.18);--fd:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--fb:'Public Sans','Segoe UI',system-ui,sans-serif}
-[data-theme=dark]{--paper:#0A1519;--surface:#0F1E24;--sunk:#0C181D;--ink:#E6EEEC;--ink2:#A9BAB8;--ink3:#8499A0;--line:#1F323A;--pri:var(--gold);--on-pri:#0A1519;--link:#6CC8D6;--sh:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7)}
+[data-theme=light]{color-scheme:light}
+[data-theme=dark]{color-scheme:dark;--paper:#0A1519;--surface:#0F1E24;--sunk:#0C181D;--ink:#E6EEEC;--ink2:#A9BAB8;--ink3:#8499A0;--line:#1F323A;--pri:var(--gold);--on-pri:#0A1519;--link:#6CC8D6;--sh:0 1px 2px rgba(0,0,0,.4),0 10px 28px -14px rgba(0,0,0,.7)}
 *{margin:0;padding:0;box-sizing:border-box}
 html{font-size:87%;scroll-behavior:smooth;scroll-padding-top:calc(var(--nav) + 1rem);overflow-x:clip;-webkit-text-size-adjust:100%}
 @media(max-width:640px){html{font-size:92%}}@media(min-width:1700px){html{font-size:100%}}
@@ -41,10 +43,11 @@ body{font-family:var(--fb);background:var(--paper);color:var(--ink);line-height:
 img,svg{max-width:100%;display:block}a{color:inherit;text-decoration:none}ul{list-style:none}button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
 :focus-visible{outline:2px solid var(--link);outline-offset:3px;border-radius:4px}
 .container{width:min(var(--w),100% - 2*clamp(1rem,4vw,2.5rem));margin-inline:auto}
-.preloader,.cursor-glow,.section-eyebrow,.section-divider,.project-index,.hero-badge,.role-ticker,.visual-glow,.visual-blob,.glow-ring,.orbit-icon{display:none!important}
+.skip-link{position:absolute;left:1rem;top:-4rem;z-index:400;background:var(--pri);color:var(--on-pri);padding:.6rem 1rem;border-radius:var(--rs);font-weight:600}.skip-link:focus{top:1rem}
 .scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--gold);z-index:200;width:0}
 /* header */
-.navbar{position:sticky;top:0;z-index:100;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid transparent;padding-top:env(safe-area-inset-top)}
+.navbar{position:sticky;top:0;z-index:100;border-bottom:1px solid transparent;padding-top:env(safe-area-inset-top)}
+.navbar::before{content:"";position:absolute;inset:0;z-index:-1;background:color-mix(in srgb,var(--paper) 88%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
 .navbar.scrolled{border-color:var(--line)}
 .navbar-inner{width:min(var(--w),100% - 2rem);margin-inline:auto;height:var(--nav);display:flex;align-items:center;gap:1.5rem}
 .brand{display:flex;align-items:center;gap:.7rem;margin-right:auto}.brand-mark,.footer-logo{width:2.3rem;height:2.3rem;flex:none}.brand-mark svg,.footer-logo svg{width:100%;height:100%}
@@ -53,7 +56,7 @@ img,svg{max-width:100%;display:block}a{color:inherit;text-decoration:none}ul{lis
 .nav-link:hover{color:var(--ink)}.nav-link.active{color:var(--ink);background:var(--sunk);box-shadow:inset 0 -2px 0 var(--gold)}
 .nav-actions{display:flex;align-items:center;gap:.5rem}
 .icon-btn,.nav-toggle{width:2.5rem;height:2.5rem;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-size:1.25rem;background:var(--surface)}
-.nav-toggle{display:none}.nav-toggle .bx-x,.nav-toggle.active .bx-menu{display:none}.nav-toggle.active .bx-x{display:block}
+.nav-toggle{display:none}.nav-group-label,.nav-sub{display:none}.nav-toggle .bx-x,.nav-toggle.active .bx-menu{display:none}.nav-toggle.active .bx-x{display:block}
 .dropdown{position:relative}.dropdown-menu{position:absolute;right:0;top:calc(100% + .5rem);min-width:15rem;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--sh);padding:.4rem;display:none}
 .dropdown.active .dropdown-menu{display:block}.dropdown-item{display:flex;gap:.7rem;align-items:center;padding:.6rem .7rem;border-radius:var(--rs);font-size:.92rem}.dropdown-item:hover{background:var(--sunk)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:2.75rem;padding:.6rem 1.25rem;border-radius:99px;font-weight:600;font-size:.95rem;border:1.5px solid transparent;transition:transform .15s,background .2s,border-color .2s}
@@ -101,14 +104,14 @@ img,svg{max-width:100%;display:block}a{color:inherit;text-decoration:none}ul{lis
 .timeline-company{display:flex;gap:.4rem;align-items:center;color:var(--ink3);font-size:.9rem;margin:.3rem 0 .7rem}.timeline-description{color:var(--ink2);margin-bottom:.8rem}
 .timeline-highlights{display:grid;gap:.45rem;font-size:.92rem;color:var(--ink2)}.timeline-highlights li{padding-left:1.1rem;position:relative}.timeline-highlights li::before{content:"";position:absolute;left:0;top:.6em;width:.4rem;height:.4rem;background:var(--gold);border-radius:1px}
 /* projects */
-.projects-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.1rem}.project-card{grid-column:span 2;display:flex;flex-direction:column;position:relative;overflow:hidden;container-type:inline-size}.project-card:has(.project-badge){grid-column:span 3}
+.projects-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:1.1rem}.project-card{grid-column:span 2;display:flex;flex-direction:column;position:relative;overflow:hidden;container-type:inline-size}
 .project-badge{position:absolute;top:.8rem;left:.8rem;z-index:2;background:var(--gold);color:#0A1519;font-size:.75rem;font-weight:700;padding:.2rem .65rem;border-radius:99px}
 .project-image{position:relative;aspect-ratio:16/10;background:var(--sunk);overflow:hidden}.project-image img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.project-card:hover .project-image img{transform:scale(1.03)}
 .project-overlay{position:absolute;inset:auto 0 0 0;padding:.7rem;background:linear-gradient(transparent,rgba(5,15,20,.7));opacity:0;transition:opacity .25s}.project-card:hover .project-overlay,.project-card:focus-within .project-overlay{opacity:1}
 @media(hover:none){.project-overlay{display:none}}.project-tags{display:flex;gap:.4rem;flex-wrap:wrap}.project-tag{font-size:.75rem;color:#fff;background:rgba(255,255,255,.18);padding:.15rem .6rem;border-radius:99px}
 .project-content{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.7rem;flex:1}.project-title{font:700 1.2rem var(--fd)}.project-description{color:var(--ink2);font-size:.93rem}.project-tech{display:flex;flex-wrap:wrap;gap:.4rem}
 .project-link{margin-top:auto;display:inline-flex;align-items:center;gap:.4rem;font-weight:600;color:var(--link);padding-top:.3rem}.project-link:hover{text-decoration:underline}
-@media(max-width:900px){.projects-grid{grid-template-columns:1fr 1fr}.project-card,.project-card:has(.project-badge){grid-column:span 1}.project-card:last-child:nth-child(odd){grid-column:1/-1}}
+@media(max-width:900px){.projects-grid{grid-template-columns:1fr 1fr}.project-card{grid-column:span 1}.project-card:last-child:nth-child(odd){grid-column:1/-1}}
 @media(max-width:600px){.projects-grid{grid-template-columns:1fr}.project-card:last-child:nth-child(odd){grid-column:auto}}
 /* skills */
 .skills-container{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:1rem}.skills-category{padding:1.5rem}.category-header{display:flex;gap:.7rem;align-items:center;margin-bottom:1.2rem}
@@ -158,14 +161,15 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid rgba(255,255,255,.14);font-size:.85rem;opacity:.75}
 /* responsive */
 @media(max-width:1080px){.nav-link{padding:.4rem .5rem;font-size:.86rem}.brand-role{display:none}}
-@media(max-width:940px){.nav-toggle{display:grid}.nav-links{position:fixed;inset:calc(var(--nav) + env(safe-area-inset-top)) 0 0 0;background:var(--paper);flex-direction:column;padding:1rem 1.5rem;gap:.2rem;transform:translateX(100%);transition:transform .3s;overflow-y:auto}.nav-links.active{transform:none}.nav-link{padding:.9rem 1rem;font-size:1.1rem;border-bottom:1px solid var(--line);border-radius:0}.nav-link.active{box-shadow:none;background:none;color:var(--link)}}
+@media(max-width:940px){.nav-toggle{display:grid}.nav-group-label{display:block}.nav-sub{display:flex}.nav-links{position:fixed;inset:calc(var(--nav) + env(safe-area-inset-top)) 0 0 0;background:var(--paper);flex-direction:column;padding:1rem 1.5rem;gap:.2rem;transform:translateX(100%);visibility:hidden;transition:transform .3s,visibility 0s .3s;overflow-y:auto}.nav-links.active{transform:none;visibility:visible;transition:transform .3s}.nav-group-label{display:block;margin-top:1.2rem;padding:.4rem 1rem;font-size:.85rem;font-weight:600;color:var(--ink3)}.nav-sub{font-size:1rem!important;display:flex;gap:.6rem;align-items:center}.nav-link{padding:.9rem 1rem;font-size:1.1rem;border-bottom:1px solid var(--line);border-radius:0}.nav-link.active{box-shadow:none;background:none;color:var(--link)}}
 @media(max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-visual{order:-1;width:min(70%,18rem);justify-self:start}.contact-layout,.footer-content{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}}
 @media(max-width:700px){.hide-mobile{display:none}.hero-metrics{grid-template-columns:1fr 1fr}.hero-metric:nth-child(3){border-left:0;padding-left:0}.hero-metric:nth-child(n+3){border-top:1px solid var(--line);margin-top:1rem}.hero-actions .btn{flex:1 1 auto}.t-nav{display:none!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-@media print{.navbar,.floating-actions,.scroll-progress{display:none}}
+@media print{.navbar,.floating-actions,.scroll-progress,.skip-link{display:none}}
 </style>
 </head>
-<body data-theme="light">
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
 
   
 
@@ -185,7 +189,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
         </div>
       </a>
 
-      <nav class="nav-links" id="navLinks">
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
         <a href="#hero" class="nav-link active" data-nav="hero">Home</a>
         <a href="#about" class="nav-link" data-nav="about">About</a>
         <a href="#experience" class="nav-link" data-nav="experience">Experience</a>
@@ -194,13 +198,17 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
         <a href="#certificates" class="nav-link" data-nav="certificates">Certifications</a>
         <a href="#testimonials" class="nav-link" data-nav="testimonials">Testimonials</a>
         <a href="#contact" class="nav-link" data-nav="contact">Contact</a>
+        <span class="nav-group-label">Websites for Sale</span>
+        <a href="https://melhik.yeneflow.com/" class="nav-link nav-sub" target="_blank" rel="noopener"><i class="bx bx-store"></i>Melhik</a>
+        <a href="https://servicedesk.motiengineering.com/" class="nav-link nav-sub" target="_blank" rel="noopener"><i class="bx bx-support"></i>Service Desk System</a>
+        <a href="https://fanareports.yeneflow.com/" class="nav-link nav-sub" target="_blank" rel="noopener"><i class="bx bx-line-chart"></i>Reporting System</a>
       </nav>
 
       <div class="nav-actions">
         <div class="dropdown" id="websitesDropdown">
-          <button class="btn btn-outline btn-sm dropdown-toggle hide-mobile" id="dropdownToggle"><span>Websites for Sale</span> <i class="bx bx-chevron-down"></i></button>
+          <button class="btn btn-outline btn-sm dropdown-toggle hide-mobile" id="dropdownToggle" aria-haspopup="true" aria-expanded="false"><span>Websites for Sale</span> <i class="bx bx-chevron-down"></i></button>
           <div class="dropdown-menu">
-            <a href="https://melhik.yeneflow.com/" class="dropdown-item" target="_blank" rel="noopener"><i class="bx bx-store"></i><span>Melhik</span></a>
+            <a href="https://melhik.yeneflow.com/" class="dropdown-item" target="_blank" rel="noopener"><i class="bx bx-store"></i><span> መልህቅ | Melhik</span></a>
             <a href="https://servicedesk.motiengineering.com/" class="dropdown-item" target="_blank" rel="noopener"><i class="bx bx-support"></i><span>Service Desk System</span></a>
             <a href="https://fanareports.yeneflow.com/" class="dropdown-item" target="_blank" rel="noopener"><i class="bx bx-line-chart"></i><span>Reporting System</span></a>
           </div>
@@ -213,7 +221,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <!-- ============================================================
          HERO
          ============================================================ -->
@@ -221,12 +229,6 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       <div class="hero-grid">
       <div class="hero-content">
         <span class="status-chip"><span class="dot"></span>Available for opportunities</span>
-        <div class="hero-badge"><i class='bx bx-terminal' style="margin-right:.4rem;"></i> ICT & PM</div>
-        <div class="role-ticker">
-          <span>Senior Project Management</span>
-          <span>SYSTEMS, NETWORK & INFRASTRUCTURE &amp; SPECIALIST</span>
-          <span>technical support, and technology solutioning </span> 
-        </div>
         <h1 class="hero-title">ICT Professional <span class="hero-title-and">and</span><br><span class="text-gradient">Senior Project Manager</span></h1>
         <p class="hero-subtitle">Senior Project Management Officer with a hands-on technical foundation in VMware ESXi, Level 2/3 systems, and enterprise IT infrastructure - now leading high-risk, time-sensitive technology delivery across digital banking and Infrastructure Projects. </p>
 
@@ -246,13 +248,6 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       </div>
 
       <div class="hero-visual">
-        <div class="visual-glow"></div>
-        <div class="visual-blob"></div>
-        <div class="glow-ring"></div>
-        <div class="orbit-icon o1"><i class='bx bx-server'></i></div>
-        <div class="orbit-icon o2"><i class='bx bx-code-alt'></i></div>
-        <div class="orbit-icon o3"><i class='bx bx-shield'></i></div>
-        <div class="orbit-icon o4"><i class='bx bx-music'></i></div>
 
         <div class="profile-photo" id="profilePhoto">
           <img class="photo-slide active" src="assets/images/Profile.png" alt="Yohannes Reta" loading="eager">
@@ -279,10 +274,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     <section id="about" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">~/about</span>
           <h2 class="section-title">Professional Profile</h2>
           <p class="section-subtitle">A dedicated ICT professional bridging technical expertise with strategic project management</p>
-          <div class="section-divider"></div>
         </div>
 
         <div class="about-grid">
@@ -326,11 +319,11 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
             <div class="achievement-list" style="gap:1.1rem;display:flex;flex-direction:column;">
               <div>
                 <div class="highlight-item" style="margin-bottom:.2rem;"><i class="bx bx-check-circle"></i><span><strong>BSc, Computer Science</strong></span></div>
-                <p style="margin-left:1.9rem;font-size:.92rem;color:var(--text-secondary);">Lucy College, Dire Dawa, GPA 3.4 · Oct 2018 - Dec 2021</p>
+                <p style="margin-left:1.9rem;font-size:.92rem;color:var(--ink2);">Lucy College, Dire Dawa, GPA 3.4 · Oct 2018 - Dec 2021</p>
               </div>
               <div>
                 <div class="highlight-item" style="margin-bottom:.2rem;"><i class="bx bx-check-circle"></i><span><strong>Diploma, Hardware &amp; Networking Service</strong></span></div>
-                <p style="margin-left:1.9rem;font-size:.92rem;color:var(--text-secondary);">MZM Polytechnic College (TVET), Dire Dawa, COC Certified · Oct 2014 - Feb 2018</p>
+                <p style="margin-left:1.9rem;font-size:.92rem;color:var(--ink2);">MZM Polytechnic College (TVET), Dire Dawa, COC Certified · Oct 2014 - Feb 2018</p>
               </div>
             </div>
           </div>
@@ -344,10 +337,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     <section id="experience" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">~/experience</span>
           <h2 class="section-title">Professional Experience</h2>
           <p class="section-subtitle">A proven track record in enterprise IT and technical leadership</p>
-          <div class="section-divider"></div>
         </div>
 
         <div class="timeline">
@@ -425,28 +416,23 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     <section id="projects" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">~/projects</span>
           <h2 class="section-title">Live Projects</h2>
           <p class="section-subtitle">Practical solutions combining technical expertise with creative implementation</p>
-          <div class="section-divider"></div>
         </div>
 
+          <div class="projects-grid">
           <div class="project-card glass accent-top">
-            <span class="project-index">01</span>
-            <span class="project-badge">Flagship</span>
-            <div class="project-image"><img src="assets/images/Melhik.png" alt="Ticket Management System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Servicedesk</span><span class="project-tag">Personal Productive Eco-System</span></div></div></div>
-            <div class="project-content">
-              <h3 class="project-title">Melhik</h3>
-              <p class="project-description">The all‑in‑one personal productivity ecosystem for professionals and teams — tasks, habits, finance, projects and strategy, anchored in one place.</p>
-              <div class="project-tech"><span>JavaScript</span><span>PHP</span><span>MySQL</span><span>Chart.js</span></div>
-              <a href="https://melhik.yeneflow.com/" class="project-link" target="_blank" rel="noopener"><span>View Project</span><i class="bx bx-link-external"></i></a>
+              <span class="project-badge">Flagship</span>
+              <div class="project-image"><img src="assets/images/Melhik.png" alt="Melhik personal productivity ecosystem" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Servicedesk</span><span class="project-tag">Personal Productive Eco-System</span></div></div></div>
+              <div class="project-content">
+                <h3 class="project-title">መልህቅ | Melhik</h3>
+                <p class="project-description">The all‑in‑one personal productivity ecosystem for professionals and teams — tasks, habits, finance, projects and strategy, anchored in one place.</p>
+                <div class="project-tech"><span>JavaScript</span><span>PHP</span><span>MySQL</span><span>Chart.js</span></div>
+                <a href="https://melhik.yeneflow.com/" class="project-link" target="_blank" rel="noopener"><span>View Project</span><i class="bx bx-link-external"></i></a>
+              </div>
             </div>
-          </div>
 
-
-        <div class="projects-grid">
           <div class="project-card glass accent-top">
-            <span class="project-index">01</span>
             <span class="project-badge">Flagship</span>
             <div class="project-image"><img src="assets/images/TMS.png" alt="Ticket Management System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Servicedesk</span><span class="project-tag">Ticket Management</span></div></div></div>
             <div class="project-content">
@@ -459,7 +445,6 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 
 
           <div class="project-card glass accent-top">
-            <span class="project-index">02</span>
             <div class="project-image"><img src="assets/images/DRS.png" alt="System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Automation</span><span class="project-tag">Reporting</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Advanced Reporting System</h3>
@@ -470,7 +455,6 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           </div>
 
           <div class="project-card glass accent-top">
-            <span class="project-index">03</span>
             <div class="project-image"><img src="assets/images/creative.png" alt="Creative Hub Music Production" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Music Production</span><span class="project-tag">Web Design</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Creative Hub</h3>
@@ -481,7 +465,6 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           </div>
 
           <div class="project-card glass accent-top">
-            <span class="project-index">04</span>
             <div class="project-image"><img src="assets/images/lms.png" alt="Library Management System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Database</span><span class="project-tag">Management System</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Library Management System</h3>
@@ -492,7 +475,6 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           </div>
 
           <div class="project-card glass accent-top">
-            <span class="project-index">05</span>
             <div class="project-image"><img src="assets/images/bus.jpg" alt="Kebele Store Management" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Inventory</span><span class="project-tag">POS System</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Kebele Store Management</h3>
@@ -511,10 +493,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     <section id="skills" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">~/skills</span>
           <h2 class="section-title">Technical Expertise</h2>
           <p class="section-subtitle">Comprehensive skill set spanning infrastructure, development, and creative domains</p>
-          <div class="section-divider"></div>
         </div>
 
         <div class="skills-container">
@@ -562,55 +542,53 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     <section id="certificates" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">~/certifications</span>
           <h2 class="section-title">Certifications</h2>
           <p class="section-subtitle">Professional qualifications and continuous learning achievements</p>
-          <div class="section-divider"></div>
         </div>
 
         <div class="certificates-grid">
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/project.png" alt="PM Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="project"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/project.png" alt="PM Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="project" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Project Management Training</h3><p>Advanced Project Management (Scope, Time, Cost, Budget, Communication, Procurement Management) and other PMBOK modules</p><div class="certificate-tag">School of Commerce</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Commerce-AAU</span></span></div>
           </div>
 
            <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/digital.jpeg" alt="Zega Digital Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="digital"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/digital.jpeg" alt="Zega Digital Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="digital" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Digital World Literacy</h3><p>Modules covering Media Literacy, Privacy, Online Security, Youth Online Safety &amp; Wellbeing, and AI Literacy</p><div class="certificate-tag">School of Commerce</div><a href="https://zega-digital-bot.onrender.com/verify/ZEGA-48F53HNR" class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Zega Bot</span></a></div>
           </div>
 
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/HIK_Vision.jpg" alt="HIK-VISION Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="HIK-VISION"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/HIK_Vision.jpg" alt="HIK-VISION Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="HIK-VISION" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Expert Technical Training</h3><p>Advanced security solutions, installation techniques and product integration.</p><div class="certificate-tag">HIK-VISION</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on HIK-VISION</span></span></div>
           </div>
 
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/CCNA1.png" alt="CCNA Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="ccna"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/CCNA1.png" alt="CCNA Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="ccna" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>CCNA – Cisco Certified</h3><p>Network administration &amp; configuration</p><div class="certificate-tag">Cisco</div><a href="https://www.credly.com/badges/ccna" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Credly</span></a></div>
           </div>
 
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/cyber.jpg" alt="Cybersecurity Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="cyber"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/cyber.jpg" alt="Cybersecurity Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="cyber" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Cybersecurity Professional</h3><p>Information security &amp; threat management</p><div class="certificate-tag">Security</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verified Certificate</span></span></div>
           </div>
 
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/Front_End.jpg" alt="Front-End Development Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="frontend"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/Front_End.jpg" alt="Front-End Development Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="frontend" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Front-End Development</h3><p>HTML5, CSS3, JavaScript mastery</p><div class="certificate-tag">Development</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verified by Course Provider</span></span></div>
           </div>
 
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/kaizen.jpg" alt="Kaizen Implementation Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="kaizen"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/kaizen.jpg" alt="Kaizen Implementation Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="kaizen" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Kaizen Implementation</h3><p>Continuous improvement methodology</p><div class="certificate-tag">Business</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verified by Kaizen Institute</span></span></div>
           </div>
 
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/saylor.jpg" alt="Information Security Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="saylor"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/saylor.jpg" alt="Information Security Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="saylor" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Information Security</h3><p>Data protection &amp; security protocols</p><div class="certificate-tag">Security</div><a href="https://learn.saylor.org" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Saylor Academy</span></a></div>
           </div>
 
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/XDR_Sales.png" alt="CISCO Black Belt Academy - XDR Sales" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="xdr-sales"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/XDR_Sales.png" alt="CISCO Black Belt Academy - XDR Sales" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="xdr-sales" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>CISCO Black Belt Academy</h3><p>Black Belt XDR Sales</p><div class="certificate-tag">Cisco</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Cisco</span></span></div>
           </div>
         </div>
@@ -623,10 +601,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     <section id="testimonials" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">~/testimonials</span>
           <h2 class="section-title">What People Say</h2>
           <p class="section-subtitle">Feedback from colleagues, clients and partners I've worked with</p>
-          <div class="section-divider"></div>
         </div>
         <div class="t-summary glass" id="tSummary" hidden></div>
         <div class="t-wrap" id="tWrap">
@@ -649,10 +625,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
     <section id="contact" class="section">
       <div class="container">
         <div class="section-header">
-          <span class="section-eyebrow">~/contact</span>
           <h2 class="section-title">Get In Touch</h2>
           <p class="section-subtitle">Let's discuss how we can work together on your next project</p>
-          <div class="section-divider"></div>
         </div>
 
         <div class="contact-layout">
@@ -759,9 +733,9 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
   </div>
 
   <!-- CERTIFICATE MODAL -->
-  <div class="modal" id="certificateModal">
+  <div class="modal" id="certificateModal" role="dialog" aria-modal="true" aria-label="Certificate preview">
     <div class="modal-content glass">
-      <button class="modal-close"><i class="bx bx-x"></i></button>
+      <button class="modal-close" aria-label="Close preview"><i class="bx bx-x"></i></button>
       <div class="modal-body"><img id="modalImage" src="" alt="Certificate Preview"></div>
     </div>
   </div>
@@ -805,44 +779,53 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       
       document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-      /* ---------- Preloader ---------- */
-
-      /* ---------- Theme toggle ---------- */
+      /* ---------- Theme toggle (applied to <html>, matching the head bootstrap script) ---------- */
+      const root = document.documentElement;
+      const metaTheme = document.getElementById('metaTheme');
       const themeToggle = document.getElementById('theme-toggle');
-      const body = document.body;
-      const savedTheme = localStorage.getItem('portfolio-theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      body.setAttribute('data-theme', savedTheme);
-      themeToggle.innerHTML = savedTheme === 'dark' ? '<i class="bx bx-sun"></i>' : '<i class="bx bx-moon"></i>';
+      function paintTheme(t) {
+        root.setAttribute('data-theme', t);
+        themeToggle.innerHTML = t === 'dark' ? '<i class="bx bx-sun"></i>' : '<i class="bx bx-moon"></i>';
+        themeToggle.setAttribute('aria-label', t === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+        if (metaTheme) metaTheme.setAttribute('content', t === 'dark' ? '#0A1519' : '#0B3C4D');
+      }
+      let savedTheme = null;
+      try { savedTheme = localStorage.getItem('portfolio-theme'); } catch (e) {}
+      paintTheme(savedTheme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
       themeToggle.addEventListener('click', () => {
-        const newTheme = body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('portfolio-theme', newTheme);
-        themeToggle.innerHTML = newTheme === 'dark' ? '<i class="bx bx-sun"></i>' : '<i class="bx bx-moon"></i>';
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        paintTheme(next);
+        try { localStorage.setItem('portfolio-theme', next); } catch (e) {}
       });
 
-      /* ---------- Navbar scroll state + scroll progress + back-to-top ---------- */
+      /* ---------- Scroll: progress bar, navbar state, back-to-top, scroll-spy (one throttled handler) ---------- */
       const navbar = document.getElementById('navbar');
       const scrollProgress = document.getElementById('scrollProgress');
       const backToTop = document.getElementById('backToTop');
-      window.addEventListener('scroll', () => {
-        const scrollTop = window.scrollY;
-        navbar.classList.toggle('scrolled', scrollTop > 20);
+      const sections = Array.from(document.querySelectorAll('section[id]'));
+      const spyLinks = Array.from(document.querySelectorAll('.nav-link[data-nav]'));
+      let ticking = false;
+      function onScroll() {
+        ticking = false;
+        const y = window.scrollY;
+        navbar.classList.toggle('scrolled', y > 20);
         const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-        scrollProgress.style.width = pct + '%';
-        backToTop.classList.toggle('show', scrollTop > 500);
-      }, { passive: true });
-      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-      /* ---------- Cursor glow (fine-pointer desktop only) ---------- */
-      const cursorGlow = document.getElementById('cursorGlow');
-      if (cursorGlow && window.matchMedia('(pointer: fine)').matches) {
-        window.addEventListener('mousemove', (e) => {
-          cursorGlow.style.opacity = '1';
-          cursorGlow.style.transform = `translate(${e.clientX}px, ${e.clientY}px) translate(-50%, -50%)`;
-        }, { passive: true });
-        document.addEventListener('mouseleave', () => { cursorGlow.style.opacity = '0'; });
+        scrollProgress.style.width = (docHeight > 0 ? (y / docHeight) * 100 : 0) + '%';
+        backToTop.classList.toggle('show', y > 500);
+        const probe = y + navbar.offsetHeight + 40;
+        let current = sections.length ? sections[0].id : '';
+        sections.forEach(s => { if (probe >= s.offsetTop) current = s.id; });
+        if (window.innerHeight + y >= document.documentElement.scrollHeight - 4 && sections.length) current = sections[sections.length - 1].id;
+        spyLinks.forEach(l => {
+          const on = l.dataset.nav === current;
+          l.classList.toggle('active', on);
+          if (on) l.setAttribute('aria-current', 'true'); else l.removeAttribute('aria-current');
+        });
       }
+      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      onScroll();
+      backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
       /* ---------- Mobile nav toggle ---------- */
       const navToggle = document.getElementById('navToggle');
@@ -864,6 +847,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       });
 
       navLinks.forEach(link => link.addEventListener('click', closeMobileNav));
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && navLinksEl.classList.contains('active')) { closeMobileNav(); navToggle.focus(); } });
+      window.addEventListener('resize', () => { if (window.innerWidth > 940) closeMobileNav(); });
 
       /* ---------- Websites-for-sale dropdown ---------- */
       const dropdown = document.getElementById('websitesDropdown');
@@ -871,30 +856,12 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       if (dropdown && dropBtn) {
         dropBtn.addEventListener('click', (e) => {
           e.preventDefault();
-          dropdown.classList.toggle('active');
+          dropBtn.setAttribute('aria-expanded', String(dropdown.classList.toggle('active')));
         });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') { dropdown.classList.remove('active'); dropBtn.setAttribute('aria-expanded', 'false'); } });
         document.addEventListener('click', (e) => {
-          if (!dropdown.contains(e.target)) dropdown.classList.remove('active');
+          if (!dropdown.contains(e.target)) { dropdown.classList.remove('active'); dropBtn.setAttribute('aria-expanded', 'false'); }
         });
-      }
-
-      /* ---------- Scroll-spy active nav link ---------- */
-      const sections = document.querySelectorAll('section[id]');
-      window.addEventListener('scroll', () => {
-        let current = '';
-        const scrollY = window.scrollY + var_navOffset();
-        sections.forEach(section => {
-          const top = section.offsetTop;
-          const height = section.clientHeight;
-          if (scrollY >= top && scrollY < top + height) current = section.getAttribute('id');
-        });
-        navLinks.forEach(link => {
-          link.classList.remove('active');
-          if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
-        });
-      }, { passive: true });
-      function var_navOffset() {
-        return (parseInt(getComputedStyle(document.documentElement).getPropertyValue('--navbar-h')) || 78) + 40;
       }
 
       /* ---------- Certificate modal ---------- */
@@ -902,6 +869,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       const modalImage = document.getElementById('modalImage');
       const modalClose = modal.querySelector('.modal-close');
       const viewButtons = document.querySelectorAll('.certificate-view');
+      let certOpener = null;
 
       const certImages = {
         'HIK-VISION': 'assets/images/Certificates/HIK_Vision.jpg',
@@ -922,27 +890,28 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           modalImage.src = certImages[cert] || '';
           modal.classList.add('active');
           document.body.style.overflow = 'hidden';
+          certOpener = btn;
+          modalClose.focus();
         });
       });
-      modalClose.addEventListener('click', () => { modal.classList.remove('active'); document.body.style.overflow = ''; });
-      modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.remove('active'); document.body.style.overflow = ''; } });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) { modal.classList.remove('active'); document.body.style.overflow = ''; }
-      });
+      function closeCert() { modal.classList.remove('active'); document.body.style.overflow = ''; if (certOpener) certOpener.focus(); }
+      modalClose.addEventListener('click', closeCert);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeCert(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeCert(); });
 
       /* ---------- Skill bars animation ---------- */
       const skillBars = document.querySelectorAll('.skill-progress');
-      const skillObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const width = entry.target.style.width;
-            entry.target.style.width = '0%';
-            requestAnimationFrame(() => { entry.target.style.width = width; });
-            skillObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.3 });
-      skillBars.forEach(bar => { const w = bar.style.width; bar.dataset.target = w; skillObserver.observe(bar); });
+      if ('IntersectionObserver' in window) {
+        const skillObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.width = entry.target.dataset.target;
+              skillObserver.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.3 });
+        skillBars.forEach(bar => { bar.dataset.target = bar.style.width; bar.style.width = '0%'; skillObserver.observe(bar); });
+      }
 
       /* ---------- Hero photo crossfade slideshow ---------- */
       const photoContainer = document.getElementById('profilePhoto');
@@ -964,6 +933,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
         });
 
         slides.forEach(img => {
+          if (img.complete && !img.naturalWidth) { img.dataset.broken = '1'; img.classList.remove('active'); }
           img.addEventListener('error', () => {
             const wasActive = img.classList.contains('active');
             img.dataset.broken = '1';
@@ -972,6 +942,9 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
             if (wasActive) advanceSlide();
           });
         });
+
+        if (slides.every(s => s.dataset.broken === '1')) photoContainer.style.display = 'none';
+        else if (slides[current] && slides[current].dataset.broken === '1') { const ok = slides.find(s => s.dataset.broken !== '1'); if (ok) { ok.classList.add('active'); current = slides.indexOf(ok); } }
 
         function checkAllBroken() {
           if (slides.every(s => s.dataset.broken === '1')) {
@@ -1016,7 +989,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
         {
           // Update this path if you move submit-contact.php to a subfolder
           // on portfolio.yeneflow.com (e.g. .../api/submit-contact.php).
-          url: 'https://portfolio.yeneflow.com/submit-contact.php',
+          url: SITE_CONFIG.backend + 'submit-contact.php',
           type: 'own'
         },
         {
@@ -1103,8 +1076,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 
               if (succeeded) {
                 statusDiv.className = 'form-status success';
-                statusDiv.innerHTML = '<i class="bx bx-check-circle"></i> ' +
-                  (payload.message || "Message sent successfully! I'll reply within 24 hours.");
+                statusDiv.textContent = (payload && payload.message) || "Message sent successfully! I'll reply within 24 hours.";
                 form.reset();
                 delivered = true;
                 break;
@@ -1142,8 +1114,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
   /* ---------- Testimonials: live feed + submission (approved items only are ever shown) ---------- */
   (function () {
     const API = {
-      list:   'https://portfolio.yeneflow.com/get-testimonials.php',
-      submit: 'https://portfolio.yeneflow.com/submit-testimonial.php'
+      list:   SITE_CONFIG.backend + 'get-testimonials.php',
+      submit: SITE_CONFIG.backend + 'submit-testimonial.php'
     };
     const $ = id => document.getElementById(id);
     const track = $('tTrack'), wrap = $('tWrap'), summary = $('tSummary'), modal = $('tModal'), form = $('tForm');

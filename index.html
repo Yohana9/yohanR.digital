@@ -252,6 +252,10 @@ html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not
 }
 /* lighter effects on phones / touch screens */
 @media(max-width:760px),(pointer:coarse){.photo-slide{filter:none;transition:opacity .9s ease}.reveal{translate:0 18px}}
+
+/* hero photos appear only once fully decoded (no gradual top-to-bottom painting) */
+html.jsimg .photo-slide:not(.ready){opacity:0!important;animation:none!important}
+.profile-photo:not(:has(.photo-slide.ready)){background:linear-gradient(110deg,var(--sunk) 30%,var(--paper) 50%,var(--sunk) 70%);background-size:200% 100%;animation:skel 1.3s linear infinite}
 </style>
 </head>
 <body>
@@ -337,12 +341,12 @@ html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not
 
         <div class="profile-photo" id="profilePhoto">
           <img class="photo-slide active" src="assets/images/Profile.webp" data-fallback="assets/images/Profile.png" decoding="async" alt="Yohannes Reta" loading="eager" fetchpriority="high">
-          <img class="photo-slide" src="assets/images/Profile1.webp" data-fallback="assets/images/Profile1.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
-          <img class="photo-slide" src="assets/images/Profile2.webp" data-fallback="assets/images/Profile2.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
-          <img class="photo-slide" src="assets/images/Profile3.webp" data-fallback="assets/images/Profile3.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
-          <img class="photo-slide" src="assets/images/Profile4.webp" data-fallback="assets/images/Profile4.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
-          <img class="photo-slide" src="assets/images/Profile5.webp" data-fallback="assets/images/Profile5.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
-          <img class="photo-slide" src="assets/images/Profile6.webp" data-fallback="assets/images/Profile6.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
+          <img class="photo-slide" data-src="assets/images/Profile1.webp" data-fallback="assets/images/Profile1.png" decoding="async" alt="Yohannes Reta">
+          <img class="photo-slide" data-src="assets/images/Profile2.webp" data-fallback="assets/images/Profile2.png" decoding="async" alt="Yohannes Reta">
+          <img class="photo-slide" data-src="assets/images/Profile3.webp" data-fallback="assets/images/Profile3.png" decoding="async" alt="Yohannes Reta">
+          <img class="photo-slide" data-src="assets/images/Profile4.webp" data-fallback="assets/images/Profile4.png" decoding="async" alt="Yohannes Reta">
+          <img class="photo-slide" data-src="assets/images/Profile5.webp" data-fallback="assets/images/Profile5.png" decoding="async" alt="Yohannes Reta">
+          <img class="photo-slide" data-src="assets/images/Profile6.webp" data-fallback="assets/images/Profile6.png" decoding="async" alt="Yohannes Reta">
         </div>
 
         <div class="visual-footer">
@@ -1068,7 +1072,7 @@ html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not
         });
 
         slides.forEach(img => {
-          if (img.complete && !img.naturalWidth) { img.dataset.broken = '1'; img.classList.remove('active'); }
+          if (img.complete && !img.naturalWidth && img.getAttribute('src')) { img.dataset.broken = '1'; img.classList.remove('active'); }
           // recover if the image finishes loading after being flagged (e.g. webp missing -> original file used)
           img.addEventListener('load', () => { if (img.dataset.broken === '1' && img.naturalWidth) { delete img.dataset.broken; photoContainer.style.display = ''; } });
           img.addEventListener('error', () => {
@@ -1102,13 +1106,39 @@ html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not
           let next = current;
           for (let i = 0; i < slides.length; i++) {
             next = (next + 1) % slides.length;
-            if (slides[next].dataset.broken !== '1') break;
+            if (isReady(slides[next])) break;
           }
           if (next === current) return;
           slides[current].classList.remove('active');
           slides[next].classList.add('active');
           current = next;
         }
+
+        /* --- load photos one after another, show each only when fully decoded --- */
+        function isReady(sl) { return sl.dataset.broken !== '1' && sl.classList.contains('ready'); }
+        function markReady(img) {
+          const done = () => img.classList.add('ready');
+          if (img.decode) img.decode().then(done, done); else done();
+        }
+        slides.forEach(img => {
+          if (img.getAttribute('src') && img.complete && img.naturalWidth) markReady(img);
+          img.addEventListener('load', () => markReady(img));
+        });
+        setTimeout(() => slides.forEach(img => { if (img.getAttribute('src') && img.complete && img.naturalWidth) img.classList.add('ready'); }), 6000);
+        const pending = slides.filter(sl => !sl.getAttribute('src') && sl.dataset.src);
+        function loadNext() {
+          const sl = pending.shift();
+          if (!sl) return;
+          let called = false;
+          const next = () => { if (!called) { called = true; loadNext(); } };
+          sl.addEventListener('load', next, { once: true });
+          sl.addEventListener('error', next, { once: true });
+          sl.src = sl.dataset.src;
+        }
+        const kick = () => (window.requestIdleCallback ? requestIdleCallback(loadNext, { timeout: 1500 }) : setTimeout(loadNext, 300));
+        const firstSlide = slides[current] || slides[0];
+        if (firstSlide.complete && firstSlide.naturalWidth) kick();
+        else { firstSlide.addEventListener('load', kick, { once: true }); firstSlide.addEventListener('error', kick, { once: true }); }
 
         /* --- modern controls: progress dots, hover pause, click-to-jump, 3D tilt --- */
         const dotsWrap = document.createElement('div');
@@ -1137,7 +1167,7 @@ html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not
           photoContainer.dataset.fx = String(Math.max(current, 0) % 4);
         }
         function goTo(i) {
-          if (i === current || slides[i].dataset.broken === '1') return;
+          if (i === current || !isReady(slides[i])) return;
           slides[current].classList.remove('active');
           slides[i].classList.add('active');
           current = i;

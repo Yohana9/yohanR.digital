@@ -1069,6 +1069,8 @@ html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not
 
         slides.forEach(img => {
           if (img.complete && !img.naturalWidth) { img.dataset.broken = '1'; img.classList.remove('active'); }
+          // recover if the image finishes loading after being flagged (e.g. webp missing -> original file used)
+          img.addEventListener('load', () => { if (img.dataset.broken === '1' && img.naturalWidth) { delete img.dataset.broken; photoContainer.style.display = ''; } });
           img.addEventListener('error', () => {
             const wasActive = img.classList.contains('active');
             img.dataset.broken = '1';
@@ -1189,13 +1191,13 @@ html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not
         // Hero metric count-up (6+, 25%, 90%, 95%+)
         const metrics = document.querySelectorAll('.metric-value');
         const runMetric = (el) => {
-          const mm = el.textContent.trim().match(/^(\D*)(\d+)(.*)$/);
+          const mm = (el.dataset.final || el.textContent).trim().match(/^(\D*)(\d+)(.*)$/);
           if (!mm) return;
           yrCountTo(el, parseInt(mm[2], 10), { prefix: mm[1], suffix: mm[3], dur: 1500, delay: 300 });
         };
         if ('IntersectionObserver' in window && metrics.length) {
-          const mo = new IntersectionObserver((es) => es.forEach(en => { if (en.isIntersecting) { runMetric(en.target); mo.unobserve(en.target); } }), { threshold: 0.6 });
-          metrics.forEach(m => { const mm = m.textContent.trim().match(/^(\D*)(\d+)(.*)$/); if (mm && !reduce) m.textContent = mm[1] + '0' + mm[3]; mo.observe(m); });
+          const mo = new IntersectionObserver((es) => es.forEach(en => { if (en.isIntersecting) { runMetric(en.target); mo.unobserve(en.target); } }), { threshold: 0.25 });
+          metrics.forEach(m => { m.dataset.final = m.textContent.trim(); const mm = m.dataset.final.match(/^(\D*)(\d+)(.*)$/); if (mm && !reduce) m.textContent = mm[1] + '0' + mm[3]; mo.observe(m); });
         }
 
         // Scroll reveal

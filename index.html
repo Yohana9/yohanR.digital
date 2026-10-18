@@ -166,6 +166,54 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 @media(max-width:700px){.hide-mobile{display:none}.hero-metrics{grid-template-columns:1fr 1fr}.hero-metric:nth-child(3){border-left:0;padding-left:0}.hero-metric:nth-child(n+3){border-top:1px solid var(--line);margin-top:1rem}.hero-actions .btn{flex:1 1 auto}.t-nav{display:none!important}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 @media print{.navbar,.floating-actions,.scroll-progress,.skip-link{display:none}}
+
+/* ===== Modern motion layer (additive) ===== */
+/* hero photo slideshow */
+.profile-photo{isolation:isolate;transition:transform .6s cubic-bezier(.2,.7,.2,1);will-change:transform}
+.profile-photo::after{content:"";position:absolute;inset:auto 0 0 0;height:5rem;background:linear-gradient(transparent,rgba(5,15,20,.5));z-index:4;pointer-events:none}
+.photo-slide{opacity:0;z-index:1;transform:scale(1.05);filter:blur(10px) saturate(.85);transition:opacity 1.2s ease,filter 1.2s ease}
+.photo-slide.active{opacity:1;z-index:2;filter:none;animation:photoIn 1.3s cubic-bezier(.77,0,.18,1) both,kenburns 6.5s cubic-bezier(.3,.6,.3,1) both}
+@keyframes photoIn{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.05)}}
+.photo-paused .photo-slide.active{animation-play-state:paused}
+.photo-dots{position:absolute;left:1rem;right:1rem;bottom:.35rem;display:flex;gap:.4rem;z-index:5}
+.photo-dot{flex:1;height:1.1rem;display:flex;align-items:center;background:none;border:0;padding:0;cursor:pointer}
+.photo-dot[hidden]{display:none}
+.photo-dot span{display:block;width:100%;height:3px;border-radius:9px;background:rgba(255,255,255,.35);position:relative;overflow:hidden}
+.photo-dot span::after{content:"";position:absolute;inset:0;background:#fff;transform:scaleX(0);transform-origin:left}
+.photo-dot.done span::after{transform:scaleX(1)}
+.photo-dot.active span::after{animation:dotfill 5s linear forwards}
+.photo-paused .photo-dot.active span::after{animation-play-state:paused}
+@keyframes dotfill{to{transform:scaleX(1)}}
+.hero-visual::before,.hero-visual::after{animation:bracket 3.2s ease-in-out infinite alternate}
+@keyframes bracket{to{transform:translate(-3px,-3px);opacity:.8}}
+.hero-visual::after{animation-name:bracket2}
+@keyframes bracket2{to{transform:translate(3px,3px);opacity:.8}}
+/* section title accent */
+.section-title{position:relative;padding-bottom:.6rem}
+.section-title::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:2.6rem;background:var(--gold);border-radius:9px;transform:scaleX(0);transform-origin:left;transition:transform .9s .3s cubic-bezier(.2,.7,.2,1)}
+.section-header.in .section-title::after,.section-header:not(.reveal) .section-title::after{transform:scaleX(1)}
+/* card hover */
+.certificate-card,.project-card,.skills-category,.about-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease}
+@media(hover:hover){.certificate-card:hover,.project-card:hover,.skills-category:hover,.about-card:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--ink3)}}
+.certificate-image img,.project-image img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+@media(hover:hover){.certificate-card:hover .certificate-image img{transform:scale(1.06)}}
+/* scroll reveal (only applied by JS, only when motion is allowed) */
+@media(prefers-reduced-motion:no-preference){
+.reveal{opacity:0;translate:0 28px;scale:.98;transition:opacity .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),translate .8s cubic-bezier(.2,.7,.2,1) var(--d,0s),scale .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.reveal.from-left{translate:-32px 0}.reveal.from-right{translate:32px 0}.reveal.zoom{translate:0 18px;scale:.94}
+.reveal.in{opacity:1;translate:0 0;scale:1}
+}
+/* scroll progress */
+#scrollProgress{position:fixed;top:0;left:0;right:0;height:3px;z-index:999;transform:scaleX(0);transform-origin:left;background:linear-gradient(90deg,var(--gold),var(--link));pointer-events:none}
+/* skills */
+.skill-bar{transition:height .25s ease}.skill-item:hover .skill-bar{height:.5rem}
+.skill-progress{position:relative;transition:width 1.6s cubic-bezier(.33,1,.68,1)}
+.skill-progress::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-100%)}
+.skill-progress.filled::after{animation:shimmer 1.4s 1.2s ease-out 1}
+@keyframes shimmer{to{transform:translateX(100%)}}
+.skill-info span:last-child{min-width:2.8em;text-align:right}
+.skill-info span.counting{color:var(--link);font-weight:700}
 </style>
 </head>
 <body>
@@ -252,7 +300,10 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
         <div class="profile-photo" id="profilePhoto">
           <img class="photo-slide active" src="assets/images/Profile.png" alt="Yohannes Reta" loading="eager">
           <img class="photo-slide" src="assets/images/Profile1.png" alt="Yohannes Reta" loading="lazy">
-          <!-- <img class="photo-slide" src="assets/images/profile3.png" alt="Yohannes Reta" loading="lazy">  -->
+          <img class="photo-slide" src="assets/images/Profile2.png" alt="Yohannes Reta" loading="lazy">
+          <img class="photo-slide" src="assets/images/Profile3.png" alt="Yohannes Reta" loading="lazy">
+          <img class="photo-slide" src="assets/images/Profile4.png" alt="Yohannes Reta" loading="lazy">
+          <img class="photo-slide" src="assets/images/Profile5.png" alt="Yohannes Reta" loading="lazy">
         </div>
 
         <div class="visual-footer">
@@ -570,6 +621,10 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           <div class="certificate-card glass accent-top">
             <div class="certificate-image"><img src="assets/images/Certificates/CCNA1.png" alt="CCNA Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="ccna" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>CCNA – Cisco Certified</h3><p>Network administration &amp; configuration</p><div class="certificate-tag">Cisco</div><a href="https://www.credly.com/badges/36dbb409-84d8-4ed2-afa3-10fe5e40dd38" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Credly</span></a></div>
+          </div>
+          <div class="certificate-card glass accent-top">
+            <div class="certificate-image"><img src="assets/images/Certificates/DataCenter.jpg" alt="Data Center IT Infrastructure - ExpertEase Global" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="datacenter" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-content"><h3>Data Center IT Infrastructure</h3><p>Data Center IT Fundamentals: core infrastructure components, servers, storage, networking, power and cooling</p><div class="certificate-tag">ExpertEase Global</div><a href="https://www.udemy.com/certificate/UC-b698d3e4-c003-4839-9a16-fb720cc9074b/" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Udemy</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
             <div class="certificate-image"><img src="assets/images/Certificates/Junior.png" alt="Cisco Junior Cybersecurity Analyst Career Path" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="junior-cyber" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
@@ -896,7 +951,8 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
         'junior-cyber': 'assets/images/Certificates/Junior.png',
         'pm-iibm': 'assets/images/Certificates/PM2.png',
         'agile': 'assets/images/Certificates/agile.jpg',
-        'quality': 'assets/images/Certificates/QA.png'
+        'quality': 'assets/images/Certificates/QA.png',
+        'datacenter': 'assets/images/Certificates/DataCenter.jpg'
       };
 
       viewButtons.forEach(btn => {
@@ -915,17 +971,42 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && modal.classList.contains('active')) closeCert(); });
 
       /* ---------- Skill bars animation ---------- */
+      const yrCountTo = (el, to, o = {}) => {
+        const { dur = 1600, delay = 0, suffix = '', prefix = '' } = o;
+        const done = () => { el.textContent = prefix + to + suffix; el.classList.remove('counting'); };
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { done(); return; }
+        el.textContent = prefix + 0 + suffix;
+        setTimeout(() => {
+          el.classList.add('counting');
+          const t0 = performance.now();
+          const tick = (now) => {
+            const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = prefix + Math.round(to * e) + suffix;
+            if (p < 1) requestAnimationFrame(tick); else done();
+          };
+          requestAnimationFrame(tick);
+        }, delay);
+      };
       const skillBars = document.querySelectorAll('.skill-progress');
       if ('IntersectionObserver' in window) {
         const skillObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
-              entry.target.style.width = entry.target.dataset.target;
+              const bar = entry.target;
+              const item = bar.closest('.skill-item');
+              const idx = item ? Array.prototype.indexOf.call(item.parentElement.children, item) : 0;
+              const delay = idx * 130;
+              const lbl = item && item.querySelector('.skill-info span:last-child');
+              setTimeout(() => { bar.style.width = bar.dataset.target; bar.classList.add('filled'); }, delay);
+              if (lbl) yrCountTo(lbl, parseFloat(lbl.dataset.final) || 0, { delay, suffix: '%', dur: 1600 });
               skillObserver.unobserve(entry.target);
             }
           });
         }, { threshold: 0.3 });
-        skillBars.forEach(bar => { bar.dataset.target = bar.style.width; bar.style.width = '0%'; skillObserver.observe(bar); });
+        skillBars.forEach(bar => { bar.dataset.target = bar.style.width; bar.style.width = '0%';
+          const lb = bar.closest('.skill-item') && bar.closest('.skill-item').querySelector('.skill-info span:last-child');
+          if (lb) { lb.dataset.final = parseFloat(lb.textContent) || 0; lb.textContent = '0%'; }
+          skillObserver.observe(bar); });
       }
 
       /* ---------- Hero photo crossfade slideshow ---------- */
@@ -988,8 +1069,128 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           current = next;
         }
 
-        setInterval(advanceSlide, 5000);
+        /* --- modern controls: progress dots, hover pause, click-to-jump, 3D tilt --- */
+        const dotsWrap = document.createElement('div');
+        dotsWrap.className = 'photo-dots';
+        const dots = slides.map((sl, i) => {
+          const b = document.createElement('button');
+          b.type = 'button'; b.className = 'photo-dot';
+          b.setAttribute('aria-label', 'Show photo ' + (i + 1));
+          b.innerHTML = '<span></span>';
+          b.addEventListener('click', () => goTo(i));
+          dotsWrap.appendChild(b);
+          return b;
+        });
+        photoContainer.appendChild(dotsWrap);
+
+        function syncDots() {
+          let usable = 0;
+          dots.forEach((d, i) => {
+            const broken = slides[i].dataset.broken === '1';
+            d.hidden = broken; if (!broken) usable++;
+            const active = slides[i].classList.contains('active');
+            d.classList.toggle('active', active);
+            d.classList.toggle('done', !active && i < current);
+          });
+          dotsWrap.style.display = usable > 1 ? '' : 'none';
+        }
+        function goTo(i) {
+          if (i === current || slides[i].dataset.broken === '1') return;
+          slides[current].classList.remove('active');
+          slides[i].classList.add('active');
+          current = i;
+          syncDots(); schedule();
+        }
+        new MutationObserver(syncDots).observe(photoContainer, { subtree: true, attributes: true, attributeFilter: ['class', 'data-broken'] });
+        syncDots();
+
+        let timer = null, hovering = false;
+        function schedule() {
+          clearTimeout(timer);
+          timer = setTimeout(() => { if (!hovering && !document.hidden) advanceSlide(); schedule(); }, 5000);
+        }
+        photoContainer.addEventListener('mouseenter', () => { hovering = true; photoContainer.classList.add('photo-paused'); clearTimeout(timer); });
+        photoContainer.addEventListener('mouseleave', () => {
+          hovering = false; photoContainer.classList.remove('photo-paused');
+          const ad = dots.find(d => d.classList.contains('active'));
+          if (ad) { ad.classList.remove('active'); void ad.offsetWidth; ad.classList.add('active'); }
+          schedule();
+        });
+        schedule();
+
+        const heroVisual = document.querySelector('.hero-visual');
+        if (heroVisual && window.matchMedia('(hover:hover) and (pointer:fine)').matches && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          heroVisual.addEventListener('pointermove', (e) => {
+            const r = photoContainer.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+            photoContainer.style.transform = `perspective(900px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg)`;
+          });
+          heroVisual.addEventListener('pointerleave', () => { photoContainer.style.transform = ''; });
+        }
       }
+
+      /* ---------- Modern scroll animations ---------- */
+      (function () {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Scroll progress bar
+        const prog = document.createElement('div');
+        prog.id = 'scrollProgress'; prog.setAttribute('aria-hidden', 'true');
+        document.body.appendChild(prog);
+        let ticking = false;
+        const updateProg = () => {
+          const h = document.documentElement.scrollHeight - window.innerHeight;
+          prog.style.transform = 'scaleX(' + (h > 0 ? Math.min(window.scrollY / h, 1) : 0) + ')';
+          ticking = false;
+        };
+        window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(updateProg); } }, { passive: true });
+        updateProg();
+
+        // Hero metric count-up (6+, 25%, 90%, 95%+)
+        const metrics = document.querySelectorAll('.metric-value');
+        const runMetric = (el) => {
+          const mm = el.textContent.trim().match(/^(\D*)(\d+)(.*)$/);
+          if (!mm) return;
+          yrCountTo(el, parseInt(mm[2], 10), { prefix: mm[1], suffix: mm[3], dur: 1500, delay: 300 });
+        };
+        if ('IntersectionObserver' in window && metrics.length) {
+          const mo = new IntersectionObserver((es) => es.forEach(en => { if (en.isIntersecting) { runMetric(en.target); mo.unobserve(en.target); } }), { threshold: 0.6 });
+          metrics.forEach(m => { const mm = m.textContent.trim().match(/^(\D*)(\d+)(.*)$/); if (mm && !reduce) m.textContent = mm[1] + '0' + mm[3]; mo.observe(m); });
+        }
+
+        // Scroll reveal
+        if (reduce || !('IntersectionObserver' in window)) return;
+        const groups = [
+          ['.section-header', ''],
+          ['.about-card', ''],
+          ['.timeline-item', 'from-left'],
+          ['.project-card', 'zoom'],
+          ['.skills-category', ''],
+          ['.certificate-card', 'zoom'],
+          ['.contact-layout > *', ''],
+          ['.footer-column', '']
+        ];
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(en => {
+            if (!en.isIntersecting) return;
+            const el = en.target;
+            el.classList.add('in');
+            io.unobserve(el);
+            const wait = (parseFloat(el.style.getPropertyValue('--d')) || 0) * 1000 + 1300;
+            setTimeout(() => el.classList.remove('reveal', 'in', 'from-left', 'from-right', 'zoom'), wait);
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+        groups.forEach(([sel, variant]) => {
+          document.querySelectorAll(sel).forEach((el) => {
+            const sibs = Array.prototype.filter.call(el.parentElement.children, c => c.matches(sel));
+            const k = sibs.indexOf(el) % 3;
+            el.style.setProperty('--d', (k * 0.1) + 's');
+            el.classList.add('reveal');
+            if (variant) el.classList.add(variant);
+            io.observe(el);
+          });
+        });
+      })();
 
       /* ---------- Contact form — dual-mode with automatic fallback ----------
          1st attempt: your own PHP + MySQL backend on portfolio.yeneflow.com

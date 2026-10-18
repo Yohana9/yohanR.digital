@@ -12,9 +12,10 @@
 <meta property="og:title" content="Yohannes Reta | Senior ICT & Project Management Professional">
 <meta property="og:description" content="Senior ICT Technical Analyst & Project Management Officer – VMware, networking & Manual Work to Tech solutions.">
 <meta property="og:url" content="https://yohana9.github.io/yohanR.digital/">
-<meta property="og:image" content="https://yohana9.github.io/yohanR.digital/assets/images/Profile_hero.png">
+<meta property="og:image" content="https://yohana9.github.io/yohanR.digital/assets/images/og-image.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://yohana9.github.io/yohanR.digital/assets/images/Profile_hero.png">
+<meta name="twitter:image" content="https://yohana9.github.io/yohanR.digital/assets/images/og-image.jpg">
 
 <title>Yohannes Reta | Senior ICT & Project Management Professional</title>
 
@@ -28,10 +29,18 @@
 <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png">
 <link rel="manifest" href="assets/images/favicon/site.webmanifest">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600;700&display=swap"></noscript>
+<link rel="preconnect" href="https://unpkg.com" crossorigin>
+<link rel="preload" as="style" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"></noscript>
+<link rel="preload" as="image" href="assets/images/Profile.webp" type="image/webp" fetchpriority="high">
 <script>window.SITE_CONFIG={/* Base URL of the PHP backend. Change to "php/" if the PHP files live in this site's /php folder. */backend:"https://portfolio.yeneflow.com/"};</script>
 <script>try{var t=localStorage.getItem('portfolio-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<script>
+/* speed helpers: webp-first images with automatic fallback to the original file, fade-in on load, safety net for async CSS */
+document.documentElement.classList.add('jsimg');
+document.addEventListener('error',function(e){var i=e.target;if(i&&i.tagName==='IMG'&&i.dataset&&i.dataset.fallback&&!i.dataset.fb){i.dataset.fb='1';e.stopImmediatePropagation();i.src=i.dataset.fallback}},true);
+setTimeout(function(){document.querySelectorAll('link[rel=preload][as=style]').forEach(function(l){l.rel='stylesheet'})},4000);
+</script>
 <style>
 :root{--paper:#F4F6F5;--surface:#fff;--sunk:#E8EEEC;--ink:#0D2330;--ink2:#3B4F5C;--ink3:#5A6B76;--line:#D3DDDA;--pet:#0B3C4D;--pet2:#0E5167;--gold:#E8B13A;--on-pri:#fff;--pri:var(--pet);--link:#0E5167;--r:.9rem;--rs:.55rem;--nav:3.9rem;--w:76rem;--sh:0 1px 2px rgba(13,35,48,.06),0 8px 24px -12px rgba(13,35,48,.18);--fd:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;--fb:'Public Sans','Segoe UI',system-ui,sans-serif}
 [data-theme=light]{color-scheme:light}
@@ -196,7 +205,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 /* card hover */
 .certificate-card,.project-card,.skills-category,.about-card{transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s ease,border-color .35s ease}
 @media(hover:hover){.certificate-card:hover,.project-card:hover,.skills-category:hover,.about-card:hover{transform:translateY(-4px);box-shadow:var(--sh);border-color:var(--ink3)}}
-.certificate-image img,.project-image img{transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.certificate-image img,.project-image img{transition:transform .6s cubic-bezier(.2,.7,.2,1),opacity .7s ease}
 @media(hover:hover){.certificate-card:hover .certificate-image img{transform:scale(1.06)}}
 /* scroll reveal (only applied by JS, only when motion is allowed) */
 @media(prefers-reduced-motion:no-preference){
@@ -214,6 +223,35 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 @keyframes shimmer{to{transform:translateX(100%)}}
 .skill-info span:last-child{min-width:2.8em;text-align:right}
 .skill-info span.counting{color:var(--link);font-weight:700}
+
+/* ===== speed + extra polish ===== */
+.bx{min-width:1em;min-height:1em}
+html.jsimg .certificate-image img:not(.loaded),html.jsimg .project-image img:not(.loaded){opacity:0}
+.certificate-image:has(img:not(.loaded)),.project-image:has(img:not(.loaded)){background:linear-gradient(110deg,var(--sunk) 30%,var(--paper) 50%,var(--sunk) 70%);background-size:200% 100%;animation:skel 1.3s linear infinite}
+@keyframes skel{to{background-position:-200% 0}}
+/* hero: four rotating transition styles + alternating zoom in / zoom out */
+.profile-photo[data-fx="1"] .photo-slide.active{animation-name:photoInUp,kenOut}
+.profile-photo[data-fx="2"] .photo-slide.active{animation-name:photoInCircle,kenPan}
+.profile-photo[data-fx="3"] .photo-slide.active{animation-name:photoInDiag,kenOut}
+@keyframes photoInUp{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes photoInCircle{from{clip-path:circle(0% at 50% 38%)}to{clip-path:circle(80% at 50% 38%)}}
+@keyframes photoInDiag{from{clip-path:polygon(0 0,0 0,0 0)}to{clip-path:polygon(0 0,220% 0,0 220%)}}
+@keyframes kenOut{from{transform:scale(1.1)}to{transform:scale(1)}}
+@keyframes kenPan{from{transform:scale(1.08) translateX(-2%)}to{transform:scale(1.02) translateX(1%)}}
+/* buttons / links */
+.btn-primary{position:relative;overflow:hidden}
+.btn-primary::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s ease;pointer-events:none}
+.btn-primary:hover::after{transform:translateX(120%)}
+.social-link{transition:transform .25s cubic-bezier(.2,.7,.2,1),background .2s,color .2s}
+.skill-badge{transition:transform .25s cubic-bezier(.2,.7,.2,1),border-color .25s}
+@media(hover:hover){.social-link:hover{transform:translateY(-3px) scale(1.06)}.skill-badge:hover{transform:translateY(-2px);border-color:var(--ink3)}.project-card:hover .project-image img{transform:scale(1.07)}}
+/* images settle (zoom-out) as their card scrolls in */
+@media(prefers-reduced-motion:no-preference){
+.reveal .certificate-image img,.reveal .project-image img{transform:scale(1.14);transition:transform 1.4s cubic-bezier(.2,.7,.2,1) var(--d,0s),opacity .7s ease}
+.reveal.in .certificate-image img,.reveal.in .project-image img{transform:scale(1)}
+}
+/* lighter effects on phones / touch screens */
+@media(max-width:760px),(pointer:coarse){.photo-slide{filter:none;transition:opacity .9s ease}.reveal{translate:0 18px}}
 </style>
 </head>
 <body>
@@ -298,13 +336,13 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
       <div class="hero-visual">
 
         <div class="profile-photo" id="profilePhoto">
-          <img class="photo-slide active" src="assets/images/Profile.png" alt="Yohannes Reta" loading="eager">
-          <img class="photo-slide" src="assets/images/Profile1.png" alt="Yohannes Reta" loading="lazy">
-          <img class="photo-slide" src="assets/images/Profile2.png" alt="Yohannes Reta" loading="lazy">
-          <img class="photo-slide" src="assets/images/Profile3.png" alt="Yohannes Reta" loading="lazy">
-          <img class="photo-slide" src="assets/images/Profile4.png" alt="Yohannes Reta" loading="lazy">
-          <img class="photo-slide" src="assets/images/Profile5.png" alt="Yohannes Reta" loading="lazy">
-          <img class="photo-slide" src="assets/images/Profile6.png" alt="Yohannes Reta" loading="lazy">
+          <img class="photo-slide active" src="assets/images/Profile.webp" data-fallback="assets/images/Profile.png" decoding="async" alt="Yohannes Reta" loading="eager" fetchpriority="high">
+          <img class="photo-slide" src="assets/images/Profile1.webp" data-fallback="assets/images/Profile1.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
+          <img class="photo-slide" src="assets/images/Profile2.webp" data-fallback="assets/images/Profile2.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
+          <img class="photo-slide" src="assets/images/Profile3.webp" data-fallback="assets/images/Profile3.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
+          <img class="photo-slide" src="assets/images/Profile4.webp" data-fallback="assets/images/Profile4.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
+          <img class="photo-slide" src="assets/images/Profile5.webp" data-fallback="assets/images/Profile5.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
+          <img class="photo-slide" src="assets/images/Profile6.webp" data-fallback="assets/images/Profile6.png" decoding="async" alt="Yohannes Reta" loading="lazy" fetchpriority="low">
         </div>
 
         <div class="visual-footer">
@@ -475,7 +513,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           <div class="projects-grid">
           <div class="project-card glass accent-top">
               <span class="project-badge">Flagship</span>
-              <div class="project-image"><img src="assets/images/Melhik.png" alt="Melhik personal productivity ecosystem" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Personal/Enterprise Level Project Module </span><span class="project-tag">Personal Productive Eco-System</span></div></div></div>
+              <div class="project-image"><img src="assets/images/Melhik.webp" data-fallback="assets/images/Melhik.png" decoding="async" alt="Melhik personal productivity ecosystem" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Personal/Enterprise Level Project Module </span><span class="project-tag">Personal Productive Eco-System</span></div></div></div>
               <div class="project-content">
                 <h3 class="project-title">መልህቅ | Melhik</h3>
                 <p class="project-description">The all‑in‑one personal productivity ecosystem for professionals and teams — tasks, habits, finance, projects and strategy, anchored in one place.</p>
@@ -486,7 +524,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 
           <div class="project-card glass accent-top">
             <span class="project-badge">Flagship</span>
-            <div class="project-image"><img src="assets/images/TMS.png" alt="Ticket Management System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Servicedesk</span><span class="project-tag">Ticket Management</span></div></div></div>
+            <div class="project-image"><img src="assets/images/TMS.webp" data-fallback="assets/images/TMS.png" decoding="async" alt="Ticket Management System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Servicedesk</span><span class="project-tag">Ticket Management</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Ticket Management System</h3>
               <p class="project-description">A unified system for tracking critical issues, accessing technical documentation, and ensuring rapid engineering intervention.</p>
@@ -497,7 +535,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 
 
           <div class="project-card glass accent-top">
-            <div class="project-image"><img src="assets/images/DRS.png" alt="System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Automation</span><span class="project-tag">Reporting</span></div></div></div>
+            <div class="project-image"><img src="assets/images/DRS.webp" data-fallback="assets/images/DRS.png" decoding="async" alt="System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Automation</span><span class="project-tag">Reporting</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Advanced Reporting System</h3>
               <p class="project-description">Empower your organization with a powerful platform for daily reporting, operations management, performance tracking, workflow coordination, and informed decision-making - built to adapt to organizations of every type and industry.</p>
@@ -507,7 +545,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           </div>
 
           <div class="project-card glass accent-top">
-            <div class="project-image"><img src="assets/images/heroetic.png" alt="Creative Hub Music Production" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Music Production</span><span class="project-tag">Web Design</span></div></div></div>
+            <div class="project-image"><img src="assets/images/heroetic.webp" data-fallback="assets/images/heroetic.png" decoding="async" alt="Creative Hub Music Production" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Music Production</span><span class="project-tag">Web Design</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">My C-Hub</h3>
               <p class="project-description">Comprehensive music production portfolio featuring albums, singles, remixes, and multimedia artwork gallery.</p>
@@ -517,7 +555,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           </div>
 
           <div class="project-card glass accent-top">
-            <div class="project-image"><img src="assets/images/lms.png" alt="Library Management System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Database</span><span class="project-tag">Management System</span></div></div></div>
+            <div class="project-image"><img src="assets/images/lms.webp" data-fallback="assets/images/lms.png" decoding="async" alt="Library Management System" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Database</span><span class="project-tag">Management System</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Library Management System</h3>
               <p class="project-description">Web application for comprehensive library inventory management, user administration, and reporting system.</p>
@@ -527,7 +565,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           </div>
 
           <div class="project-card glass accent-top">
-            <div class="project-image"><img src="assets/images/bus.jpg" alt="Kebele Store Management" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Inventory</span><span class="project-tag">POS System</span></div></div></div>
+            <div class="project-image"><img src="assets/images/bus.webp" data-fallback="assets/images/bus.jpg" decoding="async" alt="Kebele Store Management" loading="lazy"><div class="project-overlay"><div class="project-tags"><span class="project-tag">Inventory</span><span class="project-tag">POS System</span></div></div></div>
             <div class="project-content">
               <h3 class="project-title">Kebele Store Management</h3>
               <p class="project-description">Complete inventory and point-of-sale system designed for local community stores and small businesses.</p>
@@ -600,62 +638,62 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
 
         <div class="certificates-grid">
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/project.png" alt="PM Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="project" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/project.webp" data-fallback="assets/images/Certificates/project.png" decoding="async" alt="PM Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="project" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Project Management Training</h3><p>Advanced Project Management (Scope, Time, Cost, Budget, Communication, Procurement Management) and other PMBOK modules</p><div class="certificate-tag">School of Commerce</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Commerce-AAU</span></span></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/PM2.png" alt="Project Management Certification - IIBM Institute" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="pm-iibm" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/PM2.webp" data-fallback="assets/images/Certificates/PM2.png" decoding="async" alt="Project Management Certification - IIBM Institute" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="pm-iibm" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Project Management Certification</h3><p>Professional project management practice covering planning, execution, monitoring and delivery</p><div class="certificate-tag">IIBM Institute</div><a href="https://credsverse.com/credentials/c5283f49-c221-4675-8f85-3bdb6179a85b?preview=1" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on CredsVerse</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/agile.jpg" alt="Professional Certificate in Agile and SCRUM - MTF Institute" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="agile" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/agile.webp" data-fallback="assets/images/Certificates/agile.jpg" decoding="async" alt="Professional Certificate in Agile and SCRUM - MTF Institute" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="agile" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Professional Certificate in Agile &amp; SCRUM</h3><p>Agile principles, Scrum roles, events and artifacts, and iterative product delivery</p><div class="certificate-tag">MTF Institute</div><a href="https://www.udemy.com/certificate/UC-cb77f43b-d56b-44dd-9bc7-5af2363be9fc/" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Udemy</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/QA.png" alt="Quality Management Certification - IIBM Institute" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="quality" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/QA.webp" data-fallback="assets/images/Certificates/QA.png" decoding="async" alt="Quality Management Certification - IIBM Institute" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="quality" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Quality Management</h3><p>Quality management principles, quality assurance and control, and process improvement</p><div class="certificate-tag">IIBM Institute</div><a href="https://credsverse.com/credentials/31e9d785-5fa6-4377-a28e-2b290c6cd7b6?preview=1" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on CredsVerse</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/kaizen.jpg" alt="Kaizen Implementation Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="kaizen" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/kaizen.webp" data-fallback="assets/images/Certificates/kaizen.jpg" decoding="async" alt="Kaizen Implementation Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="kaizen" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Kaizen Implementation</h3><p>Continuous improvement methodology</p><div class="certificate-tag">Business</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verified by Kaizen Institute</span></span></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/CCNA1.png" alt="CCNA Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="ccna" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/CCNA1.webp" data-fallback="assets/images/Certificates/CCNA1.png" decoding="async" alt="CCNA Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="ccna" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>CCNA – Cisco Certified</h3><p>Network administration &amp; configuration</p><div class="certificate-tag">Cisco</div><a href="https://www.credly.com/badges/36dbb409-84d8-4ed2-afa3-10fe5e40dd38" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Credly</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/DataCenter.jpg" alt="Data Center IT Infrastructure - ExpertEase Global" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="datacenter" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/DataCenter.webp" data-fallback="assets/images/Certificates/DataCenter.jpg" decoding="async" alt="Data Center IT Infrastructure - ExpertEase Global" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="datacenter" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Data Center IT Infrastructure</h3><p>Data Center IT Fundamentals: core infrastructure components, servers, storage, networking, power and cooling</p><div class="certificate-tag">ExpertEase Global</div><a href="https://www.udemy.com/certificate/UC-b698d3e4-c003-4839-9a16-fb720cc9074b/" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Udemy</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/Junior.png" alt="Cisco Junior Cybersecurity Analyst Career Path" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="junior-cyber" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/Junior.webp" data-fallback="assets/images/Certificates/Junior.png" decoding="async" alt="Cisco Junior Cybersecurity Analyst Career Path" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="junior-cyber" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Junior Cybersecurity Analyst Career Path</h3><p>Network monitoring &amp; protection, firewalls, cryptography, vulnerability assessment, risk management, incident response &amp; forensics</p><div class="certificate-tag">Cisco</div><a href="https://www.credly.com/badges/c609d0f7-f7e8-4dcd-b0bf-142fcd973b70" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Credly</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/CYBER.png" alt="Cybersecurity Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="cyber" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/CYBER.webp" data-fallback="assets/images/Certificates/CYBER.png" decoding="async" alt="Cybersecurity Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="cyber" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Cybersecurity Professional</h3><p>Information security &amp; threat management</p><div class="certificate-tag">Security</div> <a href="https://www.credly.com/badges/a16c1212-7002-4380-bce1-7de752d9bb9c" 
             class="certificate-verify" target="_blank" rel="noopener">
               <span class="certificate-verify">
               <i class="bx bx-check-shield"></i><span>Verified Certificate</span></span> </a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/saylor.jpg" alt="Information Security Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="saylor" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/saylor.webp" data-fallback="assets/images/Certificates/saylor.jpg" decoding="async" alt="Information Security Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="saylor" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Information Security</h3><p>Data protection &amp; security protocols</p><div class="certificate-tag">Security</div><a href="https://learn.saylor.org/admin/tool/certificate/index.php?code=2473723026YR" class="certificate-verify" target="_blank" rel="noopener"><i class="bx bx-check-shield"></i><span>Verify on Saylor Academy</span></a></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/XDR_Sales.png" alt="CISCO Black Belt Academy - XDR Sales" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="xdr-sales" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/XDR_Sales.webp" data-fallback="assets/images/Certificates/XDR_Sales.png" decoding="async" alt="CISCO Black Belt Academy - XDR Sales" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="xdr-sales" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>CISCO Black Belt Academy</h3><p>Black Belt XDR Sales</p><div class="certificate-tag">Cisco</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Cisco</span></span></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/HIK_Vision.jpg" alt="HIK-VISION Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="HIK-VISION" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/HIK_Vision.webp" data-fallback="assets/images/Certificates/HIK_Vision.jpg" decoding="async" alt="HIK-VISION Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="HIK-VISION" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Expert Technical Training</h3><p>Advanced security solutions, installation techniques and product integration.</p><div class="certificate-tag">HIK-VISION</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on HIK-VISION</span></span></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/Front_End.jpg" alt="Front-End Development Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="frontend" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/Front_End.webp" data-fallback="assets/images/Certificates/Front_End.jpg" decoding="async" alt="Front-End Development Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="frontend" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Front-End Development</h3><p>HTML5, CSS3, JavaScript mastery</p><div class="certificate-tag">Development</div><span class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verified by Course Provider</span></span></div>
           </div>
           <div class="certificate-card glass accent-top">
-            <div class="certificate-image"><img src="assets/images/Certificates/digital.jpeg" alt="Zega Digital Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="digital" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
+            <div class="certificate-image"><img src="assets/images/Certificates/digital.webp" data-fallback="assets/images/Certificates/digital.jpeg" decoding="async" alt="Zega Digital Certification" loading="lazy"><div class="certificate-overlay"><button class="certificate-view" data-cert="digital" aria-label="View certificate full size"><i class="bx bx-zoom-in"></i></button></div></div>
             <div class="certificate-content"><h3>Digital World Literacy</h3><p>Modules covering Media Literacy, Privacy, Online Security, Youth Online Safety &amp; Wellbeing, and AI Literacy</p><div class="certificate-tag">School of Commerce</div><a href="https://zega-digital-bot.onrender.com/verify/ZEGA-48F53HNR" class="certificate-verify"><i class="bx bx-check-shield"></i><span>Verify on Zega Bot</span></a></div>
           </div>
         </div>
@@ -1094,6 +1132,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
             d.classList.toggle('done', !active && i < current);
           });
           dotsWrap.style.display = usable > 1 ? '' : 'none';
+          photoContainer.dataset.fx = String(Math.max(current, 0) % 4);
         }
         function goTo(i) {
           if (i === current || slides[i].dataset.broken === '1') return;
@@ -1169,6 +1208,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
           ['.skills-category', ''],
           ['.certificate-card', 'zoom'],
           ['.contact-layout > *', ''],
+          ['.skill-badge', 'zoom'],
           ['.footer-column', '']
         ];
         const io = new IntersectionObserver((entries) => {
@@ -1177,7 +1217,7 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
             const el = en.target;
             el.classList.add('in');
             io.unobserve(el);
-            const wait = (parseFloat(el.style.getPropertyValue('--d')) || 0) * 1000 + 1300;
+            const wait = (parseFloat(el.style.getPropertyValue('--d')) || 0) * 1000 + 1700;
             setTimeout(() => el.classList.remove('reveal', 'in', 'from-left', 'from-right', 'zoom'), wait);
           });
         }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
@@ -1191,6 +1231,17 @@ input.error,textarea.error,select.error{border-color:#d93f3f}.form-error{font-si
             io.observe(el);
           });
         });
+      })();
+
+      /* ---------- Image fade-in on load (works with the webp fallback) ---------- */
+      (function () {
+        const imgs = document.querySelectorAll('.certificate-image img, .project-image img');
+        const done = (im) => im.classList.add('loaded');
+        imgs.forEach((im) => {
+          if (im.complete && im.naturalWidth) done(im);
+          else { im.addEventListener('load', () => done(im), { once: true }); im.addEventListener('error', () => done(im), { once: true }); }
+        });
+        setTimeout(() => imgs.forEach(done), 8000);
       })();
 
       /* ---------- Contact form — dual-mode with automatic fallback ----------
